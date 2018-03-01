@@ -3,15 +3,25 @@ rem %~1 - значение первого аргумента командной строки bat-файла с удалением обра
 
 rem Переменная PROGRAM будет хранить первый аргумент командной строки заключённый в кавычки
 set PROGRAM="%~1"
-
-rem При запуске без параметров ожидается ненулевой код возврата
-rem %PROGRAM% > nul
-rem if NOT ERRORLEVEL 1
-
-%PROGRAM% test-data/copying-text.txt %TEMP%/copied-text.txt
+rem копирование однострочного файла
+%PROGRAM% one-line.txt %TEMP%/one-line-copied.txt
+if ERRORLEVEL 1 goto err
+fc.exe %TEMP%\one-line-copied.txt one-line.txt
 if ERRORLEVEL 1 goto err
 
-fc.exe %TEMP%\copied-text.txt test-data/copying-text.txt
+%PROGRAM% many-lines.txt %TEMP%/many-lines-copied.txt
+if ERRORLEVEL 1 goto err
+fc.exe %TEMP%\many-lines-copied.txt many-lines.txt
+if ERRORLEVEL 1 goto err
+
+%PROGRAM% empty.txt %TEMP%/empty-copied.txt
+if ERRORLEVEL 1 goto err
+fc.exe %TEMP%\empty-copied.txt empty.txt
+if ERRORLEVEL 1 goto err
+
+%PROGRAM% non-existent %TEMP%/non-existent-copied.txt.txt
+if ERRORLEVEL 1 goto err
+fc.exe %TEMP%\non-existent-copied.txt non-existent-copied.txt
 if ERRORLEVEL 1 goto err
 
 echo Program testing succeeded
