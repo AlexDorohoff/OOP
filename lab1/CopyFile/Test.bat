@@ -3,6 +3,10 @@ rem %~1 - значение первого аргумента командной строки bat-файла с удалением обра
 
 rem Переменная PROGRAM будет хранить первый аргумент командной строки заключённый в кавычки
 set PROGRAM="%~1"
+
+%PROGRAM% > nul
+if NOT ERRORLEVEL 1 goto err
+
 rem копирование однострочного файла
 %PROGRAM% one-line.txt %TEMP%/one-line-copied.txt
 if ERRORLEVEL 1 goto err
