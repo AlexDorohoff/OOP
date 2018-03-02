@@ -43,5 +43,14 @@
     <Text Include="fox-dog-with-cat.txt">
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
+    <Text Include="replace-lion.txt">
+      <Filter>Исходные файлы\test-data</Filter>
+    </Text>
+    <Text Include="empty.txt">
+      <Filter>Исходные файлы\test-data</Filter>
+    </Text>
+    <Text Include="fox-witout-param.txt">
+      <Filter>Исходные файлы\test-data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

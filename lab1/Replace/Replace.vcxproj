@@ -178,8 +178,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="empty.txt" />
     <Text Include="fox-dog-with-cat.txt" />
+    <Text Include="fox-witout-param.txt" />
     <Text Include="fox.txt" />
+    <Text Include="replace-lion.txt" />
     <Text Include="test.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
