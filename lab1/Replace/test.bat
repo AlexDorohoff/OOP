@@ -9,15 +9,15 @@ rem При запуске без параметров ожидается ненулевой код возврата
 if NOT ERRORLEVEL 1 goto err
 
 rem При запуске с правильными параметрами ожидается нулевой код возврата
-%PROGRAM% test-data\fox.txt "%TEMP%\fox.txt" dog cat
+%PROGRAM% fox.txt %TEMP%\fox.txt dog cat
 if ERRORLEVEL 1 goto err
-fc.exe "%TEMP%\fox.txt" test-data\fox.txt >nul
+fc.exe %TEMP%\fox.txt fox.txt >nul
 if ERRORLEVEL 1 goto err
 
 rem При запуске с правильными параметрами ожидается нулевой код возврата
-%PROGRAM% test-data\fox.txt "%TEMP%\fox.txt" dog cat
+%PROGRAM% fox-dog-with-cat.txt %TEMP%\fox-dog-with-cat.txt fox cat
 if ERRORLEVEL 1 goto err
-fc.exe "%TEMP%\fox.txt" test-data\fox-dog-with-cat.txt >nul
+fc.exe %TEMP%\fox-dog-with-cat.txt fox-dog-with-cat.txt
 if ERRORLEVEL 1 goto err
 
 echo OK
