@@ -18,13 +18,14 @@ rem замена существующей подстроки
 %PROGRAM% fox.txt %TEMP%\fox.txt dog cat
 if ERRORLEVEL 1 goto err
 fc.exe  %TEMP%\fox.txt fox.txt
-if ERRORLEVEL 1 goto err
+if NOT ERRORLEVEL 1 goto err
 
 rem При запуске с правильными параметрами ожидается нулевой код возврата
+rem замена двух вхождений
 %PROGRAM% fox-dog-with-cat.txt %TEMP%\fox-dog-with-cat.txt fox cat
 if ERRORLEVEL 1 goto err
 fc.exe  %TEMP%\fox-dog-with-cat.txt fox-dog-with-cat.txt
-if ERRORLEVEL 1 goto err
+if NOT ERRORLEVEL 1 goto err
 
 rem копирование с заменой пустого файла
 %PROGRAM% empty.txt %TEMP%\empty.txt fox cat
@@ -34,9 +35,21 @@ if ERRORLEVEL 1 goto err
 
 rem копирование с заменой без параметров
 %PROGRAM% fox-witout-param.txt %TEMP%\fox-witout-param.txt
-if ERRORLEVEL 1 goto err
+if NOT ERRORLEVEL 1 goto err
 fc.exe  %TEMP%\fox-witout-param.txt fox-witout-param.txt
-if ERRORLEVEL 1 goto err
+if NOT ERRORLEVEL 1 goto err
+
+rem пустая искомая строка, ожидаем не нулевой код
+%PROGRAM% EmptyNidle.txt %TEMP%\EmptyNidle.txt "" cat
+if NOT ERRORLEVEL 1 goto err
+fc.exe %TEMP%\EmptyNidle.txt EmptyNidle.txt
+if NOT ERRORLEVEL 1 goto err
+
+rem пустая строка замены
+%PROGRAM% EmptyNidle.txt %TEMP%\EmptyNidle.txt fox ""
+if NOT ERRORLEVEL 1 goto err
+fc.exe %TEMP%\EmptyNidle.txt EmptyNidle.txt
+if NOT ERRORLEVEL 1 goto err
 
 echo OK
 exit 0
