@@ -26,10 +26,10 @@ fc.exe %TEMP%\empty-copied.txt empty.txt
 if ERRORLEVEL 1 goto err
 
 rem копирование не существующиего файла
-%PROGRAM% non-existent %TEMP%/non-existent-copied.txt 
+%PROGRAM% non-existent %TEMP%/non-existent-copied.txt
 if NOT ERRORLEVEL 1 goto err
 fc.exe %TEMP%\non-existent-copied.txt non-existent-copied.txt
-if ERRORLEVEL 1 goto err
+if NOT ERRORLEVEL 1 goto err
 
 rem 
 echo Program testing succeeded
