@@ -10,6 +10,19 @@ if NOT ERRORLEVEL 1 goto err
 %PROGRAM% 6
 if ERRORLEVEL 1 goto err
 
+rem символ на вход
+%PROGRAM% e
+if NOT ERRORLEVEL 1 goto err
+
+%PROGRAM% 
+if NOT ERRORLEVEL 1 goto err
+
+%PROGRAM% 6 ""
+if NOT ERRORLEVEL 1 goto err
+
+%PROGRAM% 6.123
+if ERRORLEVEL 1 goto err
+
 echo Program testing succeeded
 exit 0
 
