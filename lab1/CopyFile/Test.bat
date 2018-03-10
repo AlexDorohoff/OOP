@@ -31,7 +31,6 @@ if NOT ERRORLEVEL 1 goto err
 fc.exe %TEMP%\non-existent-copied.txt non-existent-copied.txt
 if NOT ERRORLEVEL 1 goto err
 
-rem 
 echo Program testing succeeded
 exit 0
 
