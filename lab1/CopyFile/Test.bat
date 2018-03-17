@@ -13,17 +13,23 @@ if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\one-line-copied.txt one-line.txt
 if ERRORLEVEL 1 goto err
 
+echo one-line
+
 rem копирование многострочного файла
 %PROGRAM% many-lines.txt %TEMP%/many-lines-copied.txt
 if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\many-lines-copied.txt many-lines.txt
 if ERRORLEVEL 1 goto err
 
+echo many lines
+
 rem копирование пустого файла
 %PROGRAM% empty.txt %TEMP%/empty-copied.txt
 if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\empty-copied.txt empty.txt
 if ERRORLEVEL 1 goto err
+
+
 
 rem копирование не существующиего файла
 %PROGRAM% non-existent %TEMP%/non-existent-copied.txt
