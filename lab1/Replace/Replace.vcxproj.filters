@@ -40,9 +40,6 @@
     <Text Include="test.bat">
       <Filter>Исходные файлы</Filter>
     </Text>
-    <Text Include="fox-dog-with-cat.txt">
-      <Filter>Исходные файлы\test-data</Filter>
-    </Text>
     <Text Include="replace-lion.txt">
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
@@ -53,6 +50,9 @@
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
     <Text Include="EmptyNidle.txt">
+      <Filter>Исходные файлы\test-data</Filter>
+    </Text>
+    <Text Include="fox-with-fox.txt">
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
   </ItemGroup>

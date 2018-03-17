@@ -17,7 +17,7 @@ if NOT ERRORLEVEL 1 goto err
 %PROGRAM% 
 if NOT ERRORLEVEL 1 goto err
 
-%PROGRAM% 6 ""
+%PROGRAM% ""
 if NOT ERRORLEVEL 1 goto err
 
 %PROGRAM% 6.123

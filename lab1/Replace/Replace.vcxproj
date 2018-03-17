@@ -180,7 +180,7 @@
   <ItemGroup>
     <Text Include="empty.txt" />
     <Text Include="EmptyNidle.txt" />
-    <Text Include="fox-dog-with-cat.txt" />
+    <Text Include="fox-with-fox.txt" />
     <Text Include="fox-witout-param.txt" />
     <Text Include="fox.txt" />
     <Text Include="replace-lion.txt" />
