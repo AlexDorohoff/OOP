@@ -15,7 +15,7 @@ if NOT ERRORLEVEL 1 goto err
 if NOT ERRORLEVEL 1 goto err
 
 %PROGRAM% zeroDet.txt
-if ERRORLEVEL 1 goto err
+if NOT ERRORLEVEL 1 goto err
 
 
 echo Program testing succeeded

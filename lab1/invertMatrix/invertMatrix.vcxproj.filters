@@ -42,5 +42,11 @@
     <Text Include="matrix.txt">
       <Filter>test-data</Filter>
     </Text>
+    <Text Include="empty.txt">
+      <Filter>test-data</Filter>
+    </Text>
+    <Text Include="zeroDet.txt">
+      <Filter>test-data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

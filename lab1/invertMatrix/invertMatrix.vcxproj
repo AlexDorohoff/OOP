@@ -172,7 +172,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="empty.txt" />
     <Text Include="matrix.txt" />
+    <Text Include="zeroDet.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="test.bat" />
