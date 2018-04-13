@@ -1,6 +1,6 @@
 #include "stdafx.h"
-
 #include "../TrimBlanks/TrimBlanks.h"
+
 TEST_CASE("TrimBlanks tests")
 {
 	CHECK(TrimBlanks("") == "");
