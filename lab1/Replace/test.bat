@@ -9,26 +9,26 @@ rem При запуске без параметров ожидается ненулевой код возврата
 rem if NOT ERRORLEVEL 1 goto err
 
 rem замена не существующей подстроки
-%PROGRAM% replace-lion.txt %TEMP%\replace-lion.txt dog cat
-if NOT ERRORLEVEL 1 goto err
+%PROGRAM% replace-lion.txt %TEMP%\replace-lion.txt lion cat
+if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\replace-lion.txt replace-lion.txt
-if NOT ERRORLEVEL 1 goto err
+if ERRORLEVEL 1 goto err
 
 rem замена существующей подстроки
 %PROGRAM% fox.txt %TEMP%\fox.txt dog cat
-if NOT ERRORLEVEL 1 goto err
+if ERRORLEVEL 1 goto err
 fc.exe  %TEMP%\fox.txt fox.txt
 if NOT ERRORLEVEL 1 goto err
 
 rem замена двух вхождений
 %PROGRAM% fox-with-fox.txt %TEMP%\fox-with-fox.txt fox cat
-if NOT ERRORLEVEL 1 goto err
+if ERRORLEVEL 1 goto err
 fc.exe  %TEMP%\fox-with-fox.txt fox-with-fox.txt
 if NOT ERRORLEVEL 1 goto err
 
 rem копирование с заменой пустого файла
 %PROGRAM% empty.txt %TEMP%\empty.txt fox cat
-if NOT ERRORLEVEL 1 goto err
+if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\empty.txt empty.txt
 if ERRORLEVEL 1 goto err
 
@@ -38,16 +38,16 @@ if NOT ERRORLEVEL 1 goto err
 fc.exe  %TEMP%\fox-witout-param.txt fox-witout-param.txt
 if NOT ERRORLEVEL 1 goto err
 
-rem пустая искомая строка, ожидаем не нулевой код
-%PROGRAM% EmptyNidle.txt %TEMP%\EmptyNidle.txt "" cat
-if NOT ERRORLEVEL 1 goto err
-fc.exe %TEMP%\EmptyNidle.txt EmptyNidle.txt
+rem пустая искомая строка
+%PROGRAM% EmptySearch.txt %TEMP%\EmptySearch.txt "" cat
+if ERRORLEVEL 1 goto err
+fc.exe %TEMP%\EmptySearch.txt EmptySearch.txt
 if ERRORLEVEL 1 goto err
 
 rem пустая строка замены
-%PROGRAM% EmptyNidle.txt %TEMP%\EmptyNidle.txt fox ""
-if NOT ERRORLEVEL 1 goto err
-fc.exe %TEMP%\EmptyNidle.txt EmptyNidle.txt
+%PROGRAM% EmptyReplace.txt %TEMP%\EmptyReplace.txt fox ""
+if ERRORLEVEL 1 goto err
+fc.exe %TEMP%\EmptyReplace.txt EmptyReplace.txt
 if NOT ERRORLEVEL 1 goto err
 
 echo OK

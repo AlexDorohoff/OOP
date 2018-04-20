@@ -49,10 +49,13 @@
     <Text Include="fox-witout-param.txt">
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
-    <Text Include="EmptyNidle.txt">
+    <Text Include="fox-with-fox.txt">
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
-    <Text Include="fox-with-fox.txt">
+    <Text Include="EmptyReplace.txt">
+      <Filter>Исходные файлы\test-data</Filter>
+    </Text>
+    <Text Include="EmptySearch.txt">
       <Filter>Исходные файлы\test-data</Filter>
     </Text>
   </ItemGroup>
