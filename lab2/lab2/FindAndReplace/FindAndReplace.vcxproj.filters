@@ -26,13 +26,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="htmlDecode Tests.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\htmlEncode\htmlDecode.cpp">
+    <ClCompile Include="FindAndReplace.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

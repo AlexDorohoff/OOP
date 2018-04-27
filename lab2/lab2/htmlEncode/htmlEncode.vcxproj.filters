@@ -29,10 +29,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="htmlEncode.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="htmlDecode.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

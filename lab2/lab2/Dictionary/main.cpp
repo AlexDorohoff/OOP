@@ -5,6 +5,6 @@
 int main(int argc, char* argv[])
 {
 	std::cout << "";
-	Translate(argv[1]);
+	Translate(argv[1], argv[2]);
 	return 0;
 }
