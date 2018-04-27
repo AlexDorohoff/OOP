@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Dictionary.h"
+#include <map>
 #include <string>
 
 int main(int argc, char* argv[])
