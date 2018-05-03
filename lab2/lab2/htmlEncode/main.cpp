@@ -9,6 +9,6 @@ int main()
 
 	while (std::getline(std::cin, html))
 	{
-		HtmlDecode(html);
+		std::cout << HtmlDecode(html) << "\n";
 	}
 }
