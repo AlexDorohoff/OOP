@@ -15,10 +15,14 @@ bool CheckArgumentCount(int argc)
 
 void PrintSet(std::set<int> PrinmeNumbersSet)
 {
+	int i = 0;
 	for (auto item : PrinmeNumbersSet)
 	{
-		cout << item << endl;
+		i++;
+		cout << item << " ";
 	}
+	cout << "\n"
+		 << "Quantity of prime numbers : " << i << endl;
 };
 int main(int argc, char* argv[])
 {
