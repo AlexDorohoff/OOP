@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "Car.h"
-
+/*
 bool IsACorrectGear(int gear)
 {
+	return true;
 }
-
+*/
 bool Car::IsEngineOn()
 {
 	return isEngineTurnOn;
@@ -40,7 +41,6 @@ bool Car::TurnOffEngine()
 
 bool Car::SetGear(int gear)
 {
-
 	if (!IsEngineOn())
 	{
 		error = "Failed! Engin is off";
