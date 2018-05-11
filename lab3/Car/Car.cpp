@@ -1,14 +1,18 @@
 #include "stdafx.h"
 #include "Car.h"
 
-bool Car::isEngineOn()
+bool IsACorrectGear(int gear)
+{
+}
+
+bool Car::IsEngineOn()
 {
 	return isEngineTurnOn;
 }
 
-bool Car::turnOnEngine()
+bool Car::TurnOnEngine()
 {
-	if (!isEngineOn())
+	if (!IsEngineOn())
 	{
 		isEngineTurnOn = true;
 		return true;
@@ -20,31 +24,37 @@ bool Car::turnOnEngine()
 	}
 }
 
-bool Car::turnOffEngine()
+bool Car::TurnOffEngine()
 {
-	if (isEngineOn() && (m_gear == 0))
+	if (m_gear == 0)
 	{
 		isEngineTurnOn = false;
 		return true;
 	}
 	else
 	{
-		std::cout << "Gear is not 0 \n";
+		error = "Gear is not 0 \n";
 		return false;
 	}
 }
 
-bool Car::setGear(int gear)
+bool Car::SetGear(int gear)
 {
+
+	if (!IsEngineOn())
+	{
+		error = "Failed! Engin is off";
+		return false;
+	}
+
 	if (gear == 0)
 	{
 		m_gear = gear;
 		return true;
 	}
+}
 
-	if (!isEngineOn())
-	{
-		error = "Failed! Engin is off";
-		return false;
-	}
+std::string Car::GetEror()
+{
+	return error;
 }

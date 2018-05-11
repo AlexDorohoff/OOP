@@ -2,10 +2,12 @@
 class Car
 {
 public:
-	bool isEngineOn();
-	bool turnOnEngine();
-	bool turnOffEngine();
-	bool setGear(int gear);
+	bool IsEngineOn();
+	bool TurnOnEngine();
+	bool TurnOffEngine();
+	bool SetGear(int gear);
+	std::string GetEror();
+	bool IsACorrectGear();
 
 private:
 	bool isEngineTurnOn = false;
