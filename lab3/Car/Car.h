@@ -8,7 +8,7 @@ public:
 	bool setGear(int gear);
 
 private:
-	bool engineStatus = false;
+	bool isEngineTurnOn = false;
 	std::string error;
 	int m_speed = 0;
 	int m_gear = 0;

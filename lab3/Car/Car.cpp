@@ -3,14 +3,14 @@
 
 bool Car::isEngineOn()
 {
-	return engineStatus;
+	return isEngineTurnOn;
 }
 
 bool Car::turnOnEngine()
 {
 	if (!isEngineOn())
 	{
-		engineStatus = true;
+		isEngineTurnOn = true;
 		return true;
 	}
 	else
@@ -24,7 +24,7 @@ bool Car::turnOffEngine()
 {
 	if (isEngineOn() && (m_gear == 0))
 	{
-		engineStatus = false;
+		isEngineTurnOn = false;
 		return true;
 	}
 	else
