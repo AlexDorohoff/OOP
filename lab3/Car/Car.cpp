@@ -1,9 +1,21 @@
 #include "stdafx.h"
 #include "Car.h"
 /*
-bool IsACorrectGear(int gear)
+bool IsACorrectGear(int gear, unsigned int speed)
 {
-	return true;
+	if ((gear == -1 && speed >= 0 && speed <= 20)
+		|| (gear == 1 && speed >= 0 && speed <= 30)
+		|| (gear == 2 && speed >= 20 && speed <= 50)
+		|| (gear == 3 && speed >= 30 && speed <= 60)
+		|| (gear == 4 && speed >= 40 && speed <= 90)
+		|| (gear == 5 && speed >= 50 && speed <= 150))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 */
 bool Car::IsEngineOn()
@@ -16,6 +28,7 @@ bool Car::TurnOnEngine()
 	if (!IsEngineOn())
 	{
 		isEngineTurnOn = true;
+		std::cout << "staring \n";
 		return true;
 	}
 	else
@@ -38,7 +51,7 @@ bool Car::TurnOffEngine()
 		return false;
 	}
 }
-
+/*
 bool Car::SetGear(int gear)
 {
 	if (!IsEngineOn())
@@ -52,8 +65,17 @@ bool Car::SetGear(int gear)
 		m_gear = gear;
 		return true;
 	}
+
+	if (IsACorrectGear(gear))
+	{
+		m_gear = gear;
+	}
 }
 
+bool Car::SetSpeed()
+{
+}
+*/
 std::string Car::GetEror()
 {
 	return error;
