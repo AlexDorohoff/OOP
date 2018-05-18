@@ -33,7 +33,7 @@ bool CDriveControl::HandleCommand()
 		return it->second(strm);
 	}
 
-	return true;
+	return false;
 }
 
 bool CDriveControl::EngineOn(istream&)
