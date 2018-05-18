@@ -35,6 +35,7 @@ bool Car::TurnOnEngine()
 		error = "Engine already started \n";
 		return false;
 	}
+	return false;
 }
 
 bool Car::TurnOffEngine()
@@ -45,14 +46,19 @@ bool Car::TurnOffEngine()
 		return false;
 	}
 
-	if (m_speed == 0)
+	if (m_speed == 0 && m_gear == 0)
 	{
 		isEngineTurnOn = false;
 		return true;
 	}
-	else
+	else if (m_speed != 0)
 	{
 		error = "Speed is not 0 \n ";
+		return false;
+	}
+	else if (m_gear != 0)
+	{
+		error = "Gear is not 0\n";
 		return false;
 	}
 	return false;
