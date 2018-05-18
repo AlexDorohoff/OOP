@@ -21,6 +21,5 @@ private:
 	Car& m_car;
 	std::istream& m_input;
 	std::ostream& m_output;
-
 	const ActionMap m_actionMap;
 };
