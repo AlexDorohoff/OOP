@@ -33,6 +33,7 @@ bool Car::TurnOnEngine()
 	else if (IsEngineOn())
 	{
 		error = "Engine already started \n";
+		return true; // как правильно сделать передачу параметра, чтобы не проваливаться на уровень выше и не выводить uknown
 	}
 	return false;
 }
