@@ -43,11 +43,8 @@ bool CDriveControl::EngineOn(istream&)
 		m_output << "Engine is turned on\n";
 		return true;
 	}
-	else
-	{
-		m_output << m_car.GetError();
-	}
-	return true;
+	m_output << m_car.GetError();
+	return false;
 }
 
 bool CDriveControl::EngineOff(istream&)
@@ -57,11 +54,8 @@ bool CDriveControl::EngineOff(istream&)
 		m_output << "Engine is turned of\n";
 		return true;
 	}
-	else
-	{
-		m_output << m_car.GetError();
-	}
-	return true;
+	m_output << m_car.GetError();
+	return false;
 }
 
 bool CDriveControl::Info(istream&) const
@@ -102,6 +96,7 @@ bool CDriveControl::SetGear(istream& args)
 		else if (m_car.SetGear(gear))
 		{
 			m_output << "select gear: " << gear << "\n";
+			return true;
 		}
 		else
 		{
@@ -109,7 +104,7 @@ bool CDriveControl::SetGear(istream& args)
 			m_output << "Gear not change\n";
 		}
 	}
-	return true;
+	return false;
 }
 
 bool CDriveControl::SetSpeed(istream& args)
@@ -122,7 +117,6 @@ bool CDriveControl::SetSpeed(istream& args)
 		if (speed < 0)
 		{
 			cout << "Error, speed can't be with minus\n";
-			return false;
 		}
 		else if (m_car.SetSpeed(speed))
 		{
@@ -133,8 +127,7 @@ bool CDriveControl::SetSpeed(istream& args)
 		{
 			m_output << m_car.GetError();
 			m_output << "Speed not change\n";
-			return false;
 		}
 	}
-	return true;
+	return false;
 }

@@ -33,9 +33,8 @@ bool Car::TurnOnEngine()
 	else if (IsEngineOn())
 	{
 		error = "Engine already started \n";
-		return false;
 	}
-	return true;
+	return false;
 }
 
 bool Car::TurnOffEngine()
@@ -43,7 +42,6 @@ bool Car::TurnOffEngine()
 	if (!IsEngineOn())
 	{
 		error = "engine allready stoped \n";
-		return false;
 	}
 
 	if (m_speed == 0 && m_gear == 0)
@@ -54,14 +52,12 @@ bool Car::TurnOffEngine()
 	else if (m_speed != 0)
 	{
 		error = "Speed is not 0 \n ";
-		return false;
 	}
 	else if (m_gear != 0)
 	{
 		error = "Gear is not 0\n";
-		return false;
 	}
-	return true;
+	return false;
 }
 
 bool Car::SetGear(int gear)
@@ -69,13 +65,11 @@ bool Car::SetGear(int gear)
 	if (!IsEngineOn())
 	{
 		error = "Failed! Engin is off \n";
-		return false;
 	}
 
 	if (m_gear == gear)
 	{
 		error = "Gear EQUAL/n";
-		return false;
 	}
 
 	if (IsACorrectGear(gear, m_speed))
@@ -83,7 +77,7 @@ bool Car::SetGear(int gear)
 		m_gear = gear;
 		return true;
 	}
-	return true;
+	return false;
 }
 
 int Car::GetGear() const
@@ -101,7 +95,6 @@ bool Car::SetSpeed(int speed)
 	if (!isEngineTurnOn)
 	{
 		error = "Engine is off\n";
-		return false;
 	}
 
 	if (m_speed == speed)
@@ -112,18 +105,18 @@ bool Car::SetSpeed(int speed)
 	if (m_gear == 0)
 	{
 		error = "Gear is not on\n";
-		return false;
 	}
 
 	if (IsACorrectGear(m_gear, speed))
 	{
 		m_speed = speed;
+		return true;
 	}
 	else
 	{
 		error = "Not a correct gear\n";
 	}
-	return true;
+	return false;
 }
 
 std::string Car::GetError()
