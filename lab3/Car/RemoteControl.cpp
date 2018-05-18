@@ -59,7 +59,7 @@ bool CDriveControl::EngineOff(istream&)
 	}
 	else
 	{
-		m_output << m_car.GetError() << "\n";
+		m_output << m_car.GetError();
 	}
 	return true;
 }
