@@ -6,9 +6,10 @@ public:
 	bool TurnOnEngine();
 	bool TurnOffEngine();
 	bool SetGear(int gear);
-	//bool SetSpeed(int speed);
-	std::string GetEror();
-	//bool IsACorrectGear(int gear);
+	bool SetSpeed(int speed);
+	int GetSpeed() const;
+	int GetGear() const;
+	std::string GetError();
 
 private:
 	bool isEngineTurnOn = false;

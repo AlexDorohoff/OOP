@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Car.h"
-/*
+
 bool IsACorrectGear(int gear, unsigned int speed)
 {
 	if ((gear == -1 && speed >= 0 && speed <= 20)
@@ -17,7 +17,7 @@ bool IsACorrectGear(int gear, unsigned int speed)
 		return false;
 	}
 }
-*/
+
 bool Car::IsEngineOn()
 {
 	return isEngineTurnOn;
@@ -28,18 +28,22 @@ bool Car::TurnOnEngine()
 	if (!IsEngineOn())
 	{
 		isEngineTurnOn = true;
-		std::cout << "staring \n";
 		return true;
 	}
 	else
 	{
-		error = "Engine already started ";
+		error = "Engine already started \n";
 		return false;
 	}
 }
 
 bool Car::TurnOffEngine()
 {
+	if (IsEngineOn() == false)
+	{
+		error = "\n engine allready stoped \n";
+		return true;
+	}
 	if (m_gear == 0)
 	{
 		isEngineTurnOn = false;
@@ -51,32 +55,52 @@ bool Car::TurnOffEngine()
 		return false;
 	}
 }
-/*
+
 bool Car::SetGear(int gear)
 {
 	if (!IsEngineOn())
 	{
-		error = "Failed! Engin is off";
+		error = "Failed! Engin is off \n";
 		return false;
 	}
 
-	if (gear == 0)
-	{
-		m_gear = gear;
-		return true;
-	}
-
-	if (IsACorrectGear(gear))
+	if (IsACorrectGear(gear, m_speed))
 	{
 		m_gear = gear;
 	}
 }
 
-bool Car::SetSpeed()
+int Car::GetGear() const
 {
+	return m_gear;
 }
-*/
-std::string Car::GetEror()
+
+int Car::GetSpeed() const
+{
+	return m_speed;
+}
+
+bool Car::SetSpeed(int speed)
+{
+	if (!isEngineTurnOn)
+	{
+		error = "Engine is off\n";
+		return false;
+	}
+
+	if (IsACorrectGear(m_gear, speed))
+	{
+		m_speed = speed;
+	}
+	else
+	{
+		error = "Not a correct gear\n";
+		return false;
+	}
+	return true;
+}
+
+std::string Car::GetError()
 {
 	return error;
 }
