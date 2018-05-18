@@ -44,14 +44,14 @@ bool Car::TurnOffEngine()
 		error = "\n engine allready stoped \n";
 		return true;
 	}
-	if (m_gear == 0)
+	if (m_speed == 0)
 	{
 		isEngineTurnOn = false;
 		return true;
 	}
 	else
 	{
-		error = "Gear is not 0 \n";
+		error = "Speed is not 0 \n ";
 		return false;
 	}
 }
@@ -61,6 +61,12 @@ bool Car::SetGear(int gear)
 	if (!IsEngineOn())
 	{
 		error = "Failed! Engin is off \n";
+		return false;
+	}
+
+	if (m_gear == gear)
+	{
+		error = "Gear EQUAL, note change/n";
 		return false;
 	}
 
