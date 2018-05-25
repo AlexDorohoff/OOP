@@ -84,8 +84,10 @@ bool CDriveControl::Info(istream&) const
 
 	int speedInfo = (m_car.GetSpeed());
 	m_output << "Speed : " << speedInfo << "\n";
+
 	string directionInfo = ConvertDirectionToString(m_car.GetDirection());
 	m_output << "Direction : " << directionInfo << "\n";
+
 	return true;
 }
 

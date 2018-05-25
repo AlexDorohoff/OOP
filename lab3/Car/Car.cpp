@@ -137,8 +137,16 @@ bool Car::SetSpeed(int speed)
 
 	if (m_gear == 0 && (GetDirection() == Direction::Backward || GetDirection() == Direction::Forward))
 	{
-		if (m_speed > speed)
+		if (m_speed > 0 && m_speed > speed)
 		{
+			std::cout << "m_speed > 0 && m_speed > speed\n";
+			m_speed = speed;
+			m_error.clear();
+			return true;
+		}
+		else if ((m_speed < 0) && (m_speed < (speed * -1)))
+		{
+			speed = speed * -1;
 			m_speed = speed;
 			m_error.clear();
 			return true;
