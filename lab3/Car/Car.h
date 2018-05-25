@@ -22,7 +22,7 @@ public:
 
 private:
 	bool isEngineTurnOn = false;
-	std::string error;
+	std::string m_error;
 	int m_speed = 0;
 	int m_gear = 0;
 };

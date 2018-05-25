@@ -4,6 +4,7 @@
 bool IsACorrectGear(int gear, unsigned int speed)
 {
 	if ((gear == -1 && speed >= 0 && speed <= 20)
+		|| (gear == 0 && speed >= 0 && speed <= 150)
 		|| (gear == 1 && speed >= 0 && speed <= 30)
 		|| (gear == 2 && speed >= 20 && speed <= 50)
 		|| (gear == 3 && speed >= 30 && speed <= 60)
@@ -48,7 +49,7 @@ bool Car::TurnOnEngine()
 	}
 	else if (IsEngineOn())
 	{
-		error = "Engine already started \n";
+		m_error = "Engine already started \n";
 	}
 	return false;
 }
@@ -57,23 +58,23 @@ bool Car::TurnOffEngine()
 {
 	if (!IsEngineOn())
 	{
-		error = "engine allready stoped \n";
+		m_error = "engine allready stoped \n";
 		return false;
 	}
 
 	if (m_speed == 0 && m_gear == 0)
 	{
 		isEngineTurnOn = false;
-		error = "";
+		m_error = "";
 		return true;
 	}
 	else if (m_speed != 0)
 	{
-		error = "Speed is not 0 \n ";
+		m_error = "Speed is not 0 \n ";
 	}
 	else if (m_gear != 0)
 	{
-		error = "Gear is not 0\n";
+		m_error = "Gear is not 0\n";
 	}
 	return false;
 }
@@ -82,7 +83,7 @@ bool Car::SetGear(int gear)
 {
 	if (!IsEngineOn())
 	{
-		error = "Failed! Engin is off \n";
+		m_error = "Failed! Engin is off \n";
 	}
 
 	if (gear == 0)
@@ -97,7 +98,7 @@ bool Car::SetGear(int gear)
 		if ((gear > 0 && m_speed >= 0) || (gear == -1 && m_speed == 0))
 		{
 			m_gear = gear;
-			error = "";
+			m_error = "";
 			return true;
 		}
 	}
@@ -118,17 +119,12 @@ bool Car::SetSpeed(int speed)
 {
 	if (!isEngineTurnOn)
 	{
-		error = "Engine is off\n";
+		m_error = "Engine is off\n";
 	}
 
 	if (m_speed == speed)
 	{
-		error = "Speed EQUAL/n";
-	}
-
-	if (m_gear == 0)
-	{
-		error = "Gear is not on\n";
+		m_error = "Speed EQUAL/n";
 	}
 
 	if (m_gear == -1 && GetDirection() == Direction::Stop)
@@ -139,17 +135,24 @@ bool Car::SetSpeed(int speed)
 
 	if (IsACorrectGear(m_gear, speed))
 	{
-		m_speed = speed;
+		if (speed < 0)
+		{
+			m_speed = speed * -1;
+		}
+		else
+		{
+			m_speed = speed;
+		}
 		return true;
 	}
 	else
 	{
-		error = "Not a correct gear\n";
+		m_error = "Not a correct gear\n";
 	}
 	return false;
 }
 
 std::string Car::GetError() const
 {
-	return error;
+	return m_error;
 }
