@@ -21,7 +21,7 @@ public:
 	Direction GetDirection() const;
 
 private:
-	bool isEngineTurnOn = false;
+	bool m_isEngineTurnOn = false;
 	std::string m_error;
 	int m_speed = 0;
 	int m_gear = 0;

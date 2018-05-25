@@ -36,14 +36,15 @@ Direction Car::GetDirection() const
 
 bool Car::IsEngineOn() const
 {
-	return isEngineTurnOn;
+	return m_isEngineTurnOn;
 }
 
 bool Car::TurnOnEngine()
 {
 	if (!IsEngineOn())
 	{
-		isEngineTurnOn = true;
+		m_isEngineTurnOn = true;
+		m_error.clear();
 		return true;
 	}
 	else if (IsEngineOn())
@@ -63,8 +64,8 @@ bool Car::TurnOffEngine()
 
 	if (m_speed == 0 && m_gear == 0)
 	{
-		isEngineTurnOn = false;
-		m_error = "";
+		m_isEngineTurnOn = false;
+		m_error.clear();
 		return true;
 	}
 	else if (m_speed != 0)
@@ -88,6 +89,7 @@ bool Car::SetGear(int gear)
 	if (gear == 0)
 	{
 		m_gear = gear;
+		m_error.clear();
 		return true;
 	}
 
@@ -96,7 +98,7 @@ bool Car::SetGear(int gear)
 		if ((gear > 0 && m_speed >= 0) || (gear == -1 && m_speed == 0))
 		{
 			m_gear = gear;
-			m_error = "";
+			m_error.clear();
 			return true;
 		}
 	}
@@ -129,18 +131,29 @@ bool Car::SetSpeed(int speed)
 	if (m_gear == -1 && GetDirection() == Direction::Stop)
 	{
 		m_speed = speed * -1;
+		m_error.clear();
 		return true;
 	}
 
 	if (m_gear == 0 && (GetDirection() == Direction::Backward || GetDirection() == Direction::Forward))
 	{
-		m_speed = speed;
-		return true;
+		if (m_speed > speed)
+		{
+			m_speed = speed;
+			m_error.clear();
+			return true;
+		}
+		else
+		{
+			m_error = "This speed not correct for this gear\n";
+			return false;
+		}
 	}
 
 	if (IsACorrectGear(m_gear, speed))
 	{
 		m_speed = speed;
+		m_error.clear();
 		return true;
 	}
 	else
