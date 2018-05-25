@@ -41,6 +41,7 @@ bool CDriveControl::EngineOn(istream&)
 	if (m_car.TurnOnEngine())
 	{
 		m_output << "Engine is turned on\n";
+		return true;
 	}
 	m_output << m_car.GetError();
 	return true;
@@ -51,9 +52,20 @@ bool CDriveControl::EngineOff(istream&)
 	if (m_car.TurnOffEngine())
 	{
 		m_output << "Engine is turned of\n";
+		return true;
 	}
 	m_output << m_car.GetError();
 	return true;
+}
+
+string ConvertDirectionToString(const Direction& direction)
+{
+	if (direction == Direction::Backward)
+		return "backward";
+	else if (direction == Direction::Stop)
+		return "stop";
+	else
+		return "forward";
 }
 
 bool CDriveControl::Info(istream&) const
@@ -66,17 +78,14 @@ bool CDriveControl::Info(istream&) const
 
 	int speedInfo = (m_car.GetSpeed());
 	m_output << "Speed : " << speedInfo << "\n";
+	string directionInfo = ConvertDirectionToString(m_car.GetDirection());
+	m_output << "Direction : " << directionInfo << "\n";
 	return true;
 }
 
 bool TakeArg(string& input, int& arg)
 {
 	arg = stoi(input);
-	/*
-	if (gear << stoi(input))
-	{
-		cout << gear;
-	}*/
 	return true;
 }
 
@@ -98,7 +107,7 @@ bool CDriveControl::SetGear(istream& args)
 		else
 		{
 			m_output << m_car.GetError();
-			m_output << "Gear not change\n";
+			m_output << "Gear not set\n";
 		}
 	}
 	return true;

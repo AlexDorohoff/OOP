@@ -18,7 +18,23 @@ bool IsACorrectGear(int gear, unsigned int speed)
 	}
 }
 
-bool Car::IsEngineOn()
+Direction Car::GetDirection() const
+{
+	if (m_speed == 0)
+	{
+		return Direction::Stop;
+	}
+	else if (m_speed < 0)
+	{
+		return Direction::Backward;
+	}
+	else
+	{
+		return Direction::Forward;
+	}
+}
+
+bool Car::IsEngineOn() const
 {
 	return isEngineTurnOn;
 }
@@ -33,7 +49,6 @@ bool Car::TurnOnEngine()
 	else if (IsEngineOn())
 	{
 		error = "Engine already started \n";
-		return true; // как правильно сделать передачу параметра, чтобы не проваливаться на уровень выше и не выводить uknown
 	}
 	return false;
 }
@@ -43,11 +58,13 @@ bool Car::TurnOffEngine()
 	if (!IsEngineOn())
 	{
 		error = "engine allready stoped \n";
+		return false;
 	}
 
 	if (m_speed == 0 && m_gear == 0)
 	{
 		isEngineTurnOn = false;
+		error = "";
 		return true;
 	}
 	else if (m_speed != 0)
@@ -68,15 +85,21 @@ bool Car::SetGear(int gear)
 		error = "Failed! Engin is off \n";
 	}
 
-	if (m_gear == gear)
-	{
-		error = "Gear EQUAL/n";
-	}
-
-	if (IsACorrectGear(gear, m_speed))
+	if (gear == 0)
 	{
 		m_gear = gear;
 		return true;
+	}
+
+	if (IsACorrectGear(gear, m_speed) && IsEngineOn())
+	{
+		std::cout << IsEngineOn();
+		if ((gear > 0 && m_speed >= 0) || (gear == -1 && m_speed == 0))
+		{
+			m_gear = gear;
+			error = "";
+			return true;
+		}
 	}
 	return false;
 }
@@ -108,6 +131,12 @@ bool Car::SetSpeed(int speed)
 		error = "Gear is not on\n";
 	}
 
+	if (m_gear == -1 && GetDirection() == Direction::Stop)
+	{
+		m_speed = speed * -1;
+		return true;
+	}
+
 	if (IsACorrectGear(m_gear, speed))
 	{
 		m_speed = speed;
@@ -120,7 +149,7 @@ bool Car::SetSpeed(int speed)
 	return false;
 }
 
-std::string Car::GetError()
+std::string Car::GetError() const
 {
 	return error;
 }
