@@ -4,10 +4,10 @@ set PROGRAM="%~1"
 
 %PROGRAM% > nul
 if NOT ERRORLEVEL 1 goto err
-
+echo "Matrix.txt "
 %PROGRAM% matrix.txt
 if ERRORLEVEL 1 goto err
-
+echo "empty.txt "
 %PROGRAM% empty.txt
 if NOT ERRORLEVEL 1 goto err
 
