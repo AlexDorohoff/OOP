@@ -61,11 +61,17 @@ bool CDriveControl::EngineOff(istream&)
 string ConvertDirectionToString(const Direction& direction)
 {
 	if (direction == Direction::Backward)
+	{
 		return "backward";
+	}
 	else if (direction == Direction::Stop)
+	{
 		return "stop";
+	}
 	else
+	{
 		return "forward";
+	}
 }
 
 bool CDriveControl::Info(istream&) const

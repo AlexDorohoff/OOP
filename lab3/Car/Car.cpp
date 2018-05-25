@@ -4,7 +4,6 @@
 bool IsACorrectGear(int gear, unsigned int speed)
 {
 	if ((gear == -1 && speed >= 0 && speed <= 20)
-		|| (gear == 0 && speed >= 0 && speed <= 150)
 		|| (gear == 1 && speed >= 0 && speed <= 30)
 		|| (gear == 2 && speed >= 20 && speed <= 50)
 		|| (gear == 3 && speed >= 30 && speed <= 60)
@@ -94,7 +93,6 @@ bool Car::SetGear(int gear)
 
 	if (IsACorrectGear(gear, m_speed) && IsEngineOn())
 	{
-		std::cout << IsEngineOn();
 		if ((gear > 0 && m_speed >= 0) || (gear == -1 && m_speed == 0))
 		{
 			m_gear = gear;
@@ -117,9 +115,10 @@ int Car::GetSpeed() const
 
 bool Car::SetSpeed(int speed)
 {
-	if (!isEngineTurnOn)
+	if (!IsEngineOn())
 	{
 		m_error = "Engine is off\n";
+		return false;
 	}
 
 	if (m_speed == speed)
@@ -133,16 +132,15 @@ bool Car::SetSpeed(int speed)
 		return true;
 	}
 
+	if (m_gear == 0 && (GetDirection() == Direction::Backward || GetDirection() == Direction::Forward))
+	{
+		m_speed = speed;
+		return true;
+	}
+
 	if (IsACorrectGear(m_gear, speed))
 	{
-		if (speed < 0)
-		{
-			m_speed = speed * -1;
-		}
-		else
-		{
-			m_speed = speed;
-		}
+		m_speed = speed;
 		return true;
 	}
 	else
