@@ -149,6 +149,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CLineSegment.h" />
+    <ClInclude Include="CreateShape.h" />
+    <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="CTriangle.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ISolidShape.h" />
     <ClInclude Include="stdafx.h" />
@@ -156,14 +159,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CLineSegment.cpp" />
+    <ClCompile Include="CreateShape.cpp" />
+    <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="IShape.cpp" />
     <ClCompile Include="ISolidShape.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

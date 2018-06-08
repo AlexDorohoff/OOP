@@ -12,10 +12,9 @@ public:
 class CShape
 {
 public:
-	CShape(const std::string& type, double density);
-	virtual double GetArea() const;
-	virtual double GetPerimeter() const;
-	std::string ToString() const;
+	virtual double GetArea() const = 0;
+	virtual double GetPerimeter() const = 0;
+	virtual std::string ToString() const = 0;
 	std::string GetOutlineColor() const;
 	void SetOutlineColor(const std::string& color);
 

@@ -7,7 +7,7 @@ std::string ISolidShape::GetFillColor() const
 	return m_fillColor;
 };
 
-std::string ISolidShape::SetFillColor(std::string& color)
+void ISolidShape::SetFillColor(const std::string& color)
 {
 	m_fillColor = color;
 };

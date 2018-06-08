@@ -5,7 +5,7 @@ class ISolidShape : public CShape
 {
 public:
 	std::string GetFillColor() const;
-	std::string SetFillColor(std::string& color);
+	void SetFillColor(const std::string& color);
 
 private:
 	std::string m_fillColor;
