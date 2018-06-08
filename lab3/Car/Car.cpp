@@ -139,7 +139,6 @@ bool Car::SetSpeed(int speed)
 	{
 		if (m_speed > 0 && m_speed > speed)
 		{
-			std::cout << "m_speed > 0 && m_speed > speed\n";
 			m_speed = speed;
 			m_error.clear();
 			return true;

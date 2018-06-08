@@ -51,7 +51,7 @@ bool CDriveControl::EngineOff(istream&)
 {
 	if (m_car.TurnOffEngine())
 	{
-		m_output << "Engine is turned of\n";
+		m_output << "Engine is turned off\n";
 		return true;
 	}
 	m_output << m_car.GetError();
@@ -102,6 +102,9 @@ bool CDriveControl::SetGear(istream& args)
 	int gear;
 	string input;
 	args >> input;
+	if (is_numeric(args))
+	{
+	}
 	if (TakeArg(input, gear))
 	{
 		if ((gear < -1) || (gear > 5))
