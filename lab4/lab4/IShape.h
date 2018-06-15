@@ -9,14 +9,13 @@ public:
 	double y;
 };
 
-class CShape
+class IShape
 {
 public:
 	virtual double GetArea() const = 0;
 	virtual double GetPerimeter() const = 0;
 	virtual std::string ToString() const = 0;
-	std::string GetOutlineColor() const;
-	void SetOutlineColor(const std::string& color);
+	virtual std::string GetOutlineColor() const = 0;
 
 private:
 	std::string m_outlineColor;

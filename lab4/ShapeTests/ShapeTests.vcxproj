@@ -151,7 +151,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lab4\IShape.cpp" />
+    <ClCompile Include="..\lab4\CLineSegment.cpp" />
+    <ClCompile Include="..\lab4\CreateShape.cpp" />
+    <ClCompile Include="..\lab4\CRectangle.cpp" />
+    <ClCompile Include="..\lab4\CTriangle.cpp" />
+    <ClCompile Include="..\lab4\ISolidShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShapeTests.cpp" />
     <ClCompile Include="stdafx.cpp">

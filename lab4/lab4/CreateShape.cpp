@@ -1,20 +1,22 @@
 #include "stdafx.h"
 #include "CreateShape.h"
 #include "CLineSegment.h"
+#include "CRectangle.h"
 #include "CTriangle.h"
 #include "IShape.h"
 #include "ISolidShape.h"
-CreateShape::CreateShape(std::istream& input)
-	: m_actionMap({ { "line", std::bind(&CreateShape::CreateLine, this, std::placeholders::_1) },
+ShapeCreator::ShapeCreator(std::istream& input)
+	: m_actionMap({ { "line", std::bind(&ShapeCreator::CreateLine, this, std::placeholders::_1) },
 
-		  { "triangle", std::bind(&CreateShape::CreateTriangle, this, std::placeholders::_1) } })
+		  { "triangle", std::bind(&ShapeCreator::CreateTriangle, this, std::placeholders::_1) },
 
-	/*	  { "rectangle", std::bind(&CreateShape::CreateRectangle, this, std::placeholders::_1) },
-		  { "circle", std::bind(&CreateShape::CreateCircle, this, std::placeholders::_1) } })
+		  { "rectangle", std::bind(&ShapeCreator::CreateRectangle, this, std::placeholders::_1) } })
+	/*,
+	  { "circle", std::bind(&CreateShape::CreateCircle, this, std::placeholders::_1) } })
 	*/
 	, m_input(input){};
 
-std::shared_ptr<CShape> CreateShape::ExecuteCommand() const
+std::shared_ptr<IShape> ShapeCreator::ExecuteCommand() const
 {
 	std::string commandLine;
 	std::getline(m_input, commandLine);
@@ -32,7 +34,7 @@ std::shared_ptr<CShape> CreateShape::ExecuteCommand() const
 	return false;
 }
 
-std::shared_ptr<CShape> CreateShape::CreateLine(std::istream& args) const
+std::shared_ptr<IShape> ShapeCreator::CreateLine(std::istream& args) const
 {
 	CPoint point1, point2;
 	std::string outlineColor, inputValue;
@@ -66,7 +68,7 @@ std::shared_ptr<CShape> CreateShape::CreateLine(std::istream& args) const
 	return std::make_shared<CLineSegment>(point1, point2, outlineColor);
 }
 
-std::shared_ptr<CShape> CreateShape::CreateTriangle(std::istream& args) const
+std::shared_ptr<IShape> ShapeCreator::CreateTriangle(std::istream& args) const
 {
 	CPoint vertex1, vertex2, vertex3;
 	std::string outlineColor, fillColor, inputValue;
@@ -104,8 +106,33 @@ std::shared_ptr<CShape> CreateShape::CreateTriangle(std::istream& args) const
 
 	return std::make_shared<CTriangle>(vertex1, vertex2, vertex3, outlineColor, fillColor);
 }
-/*
-std::shared_ptr<CShape> CreateShape::CreateRectangle(std::istream& args) const {
 
-};
-*/
+std::shared_ptr<IShape> ShapeCreator::CreateRectangle(std::istream& args) const
+{
+	CPoint leftTop, rigthBottom;
+	std::string outlineColor, fillColor, inputValue;
+	try
+	{
+		args >> inputValue;
+		leftTop.x = std::stod(inputValue);
+		args >> inputValue;
+		leftTop.y = std::stod(inputValue);
+
+		inputValue.clear();
+
+		args >> inputValue;
+		rigthBottom.x = std::stod(inputValue);
+		args >> inputValue;
+		rigthBottom.y = std::stod(inputValue);
+
+		args >> outlineColor;
+
+		args >> fillColor;
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+		return nullptr;
+	}
+	return std::make_shared<CRectangle>(leftTop, rigthBottom, outlineColor, fillColor);
+}

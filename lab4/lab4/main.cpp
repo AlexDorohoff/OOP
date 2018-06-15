@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void Info(const std::vector<std::shared_ptr<CShape>>& shapes)
+void Info(const std::vector<std::shared_ptr<IShape>>& shapes)
 {
 	for (auto shape : shapes)
 	{
@@ -17,10 +17,10 @@ void Info(const std::vector<std::shared_ptr<CShape>>& shapes)
 int main()
 {
 
-	std::vector<std::shared_ptr<CShape>> shapes;
-	CreateShape createShape(std::cin);
+	std::vector<std::shared_ptr<IShape>> shapes;
+	ShapeCreator createdShape(std::cin);
 
-	while (auto shape = createShape.ExecuteCommand())
+	while (auto shape = createdShape.ExecuteCommand())
 	{
 		shapes.push_back(shape);
 	}

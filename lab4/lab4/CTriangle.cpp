@@ -8,9 +8,9 @@ CTriangle::CTriangle(CPoint const& vertex1, CPoint const& vertex2, CPoint const&
 	: m_vertex1(vertex1)
 	, m_vertex2(vertex2)
 	, m_vertex3(vertex3)
+	, m_fillColor(fillColor)
+	, m_outlineColor(outlineColor)
 {
-	SetOutlineColor(outlineColor);
-	SetFillColor(fillColor);
 }
 
 CPoint CTriangle::GetVertex1() const
@@ -46,4 +46,14 @@ std::string CTriangle::ToString() const
 {
 	return static_cast<std::string>("Shape: triangle ") + static_cast<std::string>("\nVertex1: ") + std::to_string(m_vertex1.x) + " " + std::to_string(m_vertex1.y) + " " + static_cast<std::string>("\nVertex2: ") + std::to_string(m_vertex2.x) + " " + std::to_string(m_vertex2.y) + " " + static_cast<std::string>("\nVertex3: ") + std::to_string(m_vertex3.x) + " " + std::to_string(m_vertex3.y)
 		+ static_cast<std::string>("\nArea: ") + std::to_string(CTriangle::GetArea()) + static_cast<std::string>("\nPerimetr: ") + std::to_string(CTriangle::GetPerimeter()) + static_cast<std::string>("\nOutline color: ") + GetOutlineColor() + "\n";
+}
+
+std::string CTriangle::GetFillColor() const
+{
+	return m_fillColor;
+}
+
+std::string CTriangle::GetOutlineColor() const
+{
+	return m_outlineColor;
 }
