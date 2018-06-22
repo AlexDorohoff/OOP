@@ -29,5 +29,5 @@ TEST_CASE("segment has lenth")
 TEST_CASE("segment has info")
 {
 	CLineSegment line({ 0, 1 }, { 2, 3 }, "#ffffff");
-	CHECK(line.ToString() == "Shape: line Area: 0.000000 Perimetr: 2.828427 Outline color: #ffffff\n");
+	CHECK(line.ToString() == "Shape: line\nArea: 0\nPerimetr: 2.82843\nOutline color: #ffffff\n");
 }

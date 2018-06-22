@@ -30,11 +30,6 @@ CPoint CCircle::GetCenter() const
 	return CPoint();
 }
 
-std::string CCircle::GetOutlineColor() const
-{
-	return m_outlineColor;
-}
-
 std::string CCircle::GetFillColor() const
 {
 	return m_fillColor;

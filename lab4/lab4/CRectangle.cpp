@@ -6,12 +6,10 @@
 CRectangle::CRectangle(const CPoint& leftTop, const CPoint& rightBottom, const std::string outlineColor, std::string fillColor)
 	: m_leftTop(leftTop)
 	, m_rightBottom(rightBottom)
-	, m_outlineColor(outlineColor)
-	, m_fillColor(fillColor)
-
-		  {
-
-		  };
+{
+	SetOutlineColor(outlineColor);
+	SetFillColor(fillColor);
+};
 double CRectangle::GetWidth() const
 {
 	return abs(m_rightBottom.x - m_leftTop.x);
@@ -34,7 +32,7 @@ double CRectangle::GetArea() const
 
 void CRectangle::AppendProperties(std::ostream& strm) const
 {
-	strm << "Shape: rectangle\n"
+	strm << "Shape: rectangle"
 		 << "\nleft top: " << std::to_string(m_leftTop.x) << " " << std::to_string(m_leftTop.y)
 		 << "\nright bottom: " << std::to_string(m_rightBottom.x) << " " << std::to_string(m_rightBottom.y)
 		 << ("\nwidth: ") << std::to_string(GetWidth());

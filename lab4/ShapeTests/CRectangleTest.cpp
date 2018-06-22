@@ -7,8 +7,8 @@ TEST_CASE("Rectangle has its points, black outlinecolor and white fillcolor by d
 	CHECK(rectangle.GetLeftTop().y == 1);
 	CHECK(rectangle.GetRightBottom().x == 1);
 	CHECK(rectangle.GetRightBottom().y == 0);
-	CHECK(rectangle.GetOutlineColor() == "#000000");
-	CHECK(rectangle.GetFillColor() == "#FFFFFF");
+	CHECK(rectangle.GetOutlineColor() == "#fffff");
+	CHECK(rectangle.GetFillColor() == "#00000");
 }
 
 TEST_CASE("Rectangle has its points, outlinecolor and fillcolor")
@@ -32,12 +32,12 @@ TEST_CASE("Rectangle has correct perimeter and area")
 TEST_CASE("Rectangle has text representation")
 {
 	CRectangle rectangle({ 1, 0 }, { 0, 1 }, "#090909", "#FF00FF");
-	CHECK(rectangle.ToString() == R"(Rectangle:
-LeftTop = (0.000, 0.000)
-RightBottom = (1.000, 1.000)
-Perimeter = 4.000
-Area = 1.000
-OutlineColor = #090909
-FillColor = #FF00FF
+	CHECK(rectangle.ToString() == R"(Shape: rectangle
+left top: 1.000000 0.000000
+right bottom: 0.000000 1.000000
+width: 1.000000
+Area: 1
+Perimetr: 4
+Outline color: #090909
 )");
 }
