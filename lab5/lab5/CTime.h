@@ -37,6 +37,11 @@ public:
 	CTime operator+(CTime const& time2) const;
 	CTime operator-(CTime const& time2) const;
 
+	CTime operator+=(CTime const& time);
+	CTime operator-=(CTime const& time);
+
+	CTime operator*(CTime const* scalar) const;
+
 private:
 	unsigned m_timestamp = 0;
 };

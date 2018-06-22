@@ -131,3 +131,23 @@ CTime CTime::operator-(CTime const& time2) const
 	}
 	return result;
 }
+
+CTime CTime::operator+=(CTime const& time)
+{
+
+	m_timestamp += time.m_timestamp;
+	return PreventOverFlowSecond(m_timestamp);
+}
+
+CTime CTime::operator-=(CTime const& time)
+{
+	if (m_timestamp < time.m_timestamp)
+	{
+		m_timestamp = SECONDS_IN_DAY - (time.m_timestamp - m_timestamp);
+	}
+	else
+	{
+		m_timestamp -= time.m_timestamp;
+	}
+	return m_timestamp;
+}
