@@ -121,6 +121,13 @@ CTime CTime::operator+(CTime const& time2) const
 CTime CTime::operator-(CTime const& time2) const
 {
 	unsigned result = 0;
-	result = m_timestamp - time2.m_timestamp;
+	if (m_timestamp < time2.m_timestamp)
+	{
+		result = SECONDS_IN_DAY - (time2.m_timestamp - m_timestamp);
+	}
+	else
+	{
+		result = m_timestamp - time2.m_timestamp;
+	}
 	return result;
 }
