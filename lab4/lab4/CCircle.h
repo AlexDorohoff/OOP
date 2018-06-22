@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "IShape.h"
 #include "ISolidShape.h"
 
@@ -20,5 +19,5 @@ private:
 	CPoint m_center;
 	int m_radius;
 	std::string m_outlineColor;
-	std::string m_fillColor
+	std::string m_fillColor;
 };

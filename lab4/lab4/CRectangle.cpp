@@ -1,7 +1,5 @@
-#include "STDAFX.H"
+#include "stdafx.h"
 #include "CRectangle.h"
-#include "IShape.h"
-#include "ISolidShape.h"
 #include <iomanip>
 #include <sstream>
 
@@ -34,32 +32,12 @@ double CRectangle::GetArea() const
 	return GetWidth() * GetHeight();
 }
 
-std::string CRectangle::ToString() const
-
+void CRectangle::AppendProperties(std::ostream& strm) const
 {
-	std::ostringstream str;
-	str << std::fixed << std::setprecision(2);
-
-	str << "Rectangle:\n"
-		<< "Left Top (" << m_leftTop.x << ", " << m_leftTop.y << ")\n"
-		<< "Right Bottom (" << m_rightBottom.x << ", " << m_rightBottom.y << ")\n"
-		<< "Width: " << GetWidth() << "\n"
-		<< "Height: " << GetHeight() << "\n"
-		<< "Area: " << GetArea() << "\n"
-		<< "Perimeter: " << GetPerimeter() << "\n"
-		<< "Outline color: " << GetOutlineColor() << "\n"
-		<< "Fill color: " << GetFillColor() << "\n";
-	return str.str();
-}
-
-std::string CRectangle::GetOutlineColor() const
-{
-	return m_outlineColor;
-}
-
-std::string CRectangle::GetFillColor() const
-{
-	return m_fillColor;
+	strm << "Shape: rectangle\n"
+		 << "\nleft top: " << std::to_string(m_leftTop.x) << " " << std::to_string(m_leftTop.y)
+		 << "\nright bottom: " << std::to_string(m_rightBottom.x) << " " << std::to_string(m_rightBottom.y)
+		 << ("\nwidth: ") << std::to_string(GetWidth());
 }
 
 CPoint CRectangle::GetLeftTop() const

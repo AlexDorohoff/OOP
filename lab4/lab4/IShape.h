@@ -1,6 +1,5 @@
 
 #pragma once
-#include "stdafx.h"
 
 class CPoint
 {
@@ -17,6 +16,7 @@ public:
 	virtual std::string ToString() const = 0;
 	virtual std::string GetOutlineColor() const = 0;
 
+	virtual ~IShape(){};
+
 private:
-	std::string m_outlineColor;
 };

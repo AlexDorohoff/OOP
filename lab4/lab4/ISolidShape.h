@@ -1,12 +1,12 @@
 #pragma once
-#include "IShape.h"
+#include "CShape.h"
 
-class ISolidShape : public IShape
+class ISolidShape : public CShape
 {
 public:
-	virtual std::string GetFillColor() const;
-	virtual void SetFillColor(const std::string& color);
+	virtual ~ISolidShape(){};
+	virtual std::string GetFillColor() const = 0;
 
 private:
-	std::string m_fillColor;
+	virtual void AppendProperties(std::ostream& strm) const = 0;
 };

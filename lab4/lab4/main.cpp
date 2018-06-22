@@ -1,8 +1,8 @@
 
 #include "stdafx.h"
 #include "../../Catch/catch.hpp"
-#include "CreateShape.h"
 #include "IShape.h"
+#include "ShapeCreator.h"
 
 using namespace std;
 
@@ -20,7 +20,7 @@ int main()
 	std::vector<std::shared_ptr<IShape>> shapes;
 	ShapeCreator createdShape(std::cin);
 
-	while (auto shape = createdShape.ExecuteCommand())
+	while (auto shape = createdShape.CreateShape())
 	{
 		shapes.push_back(shape);
 	}

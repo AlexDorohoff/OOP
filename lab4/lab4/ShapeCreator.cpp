@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "CreateShape.h"
+#include "ShapeCreator.h"
 #include "CLineSegment.h"
 #include "CRectangle.h"
 #include "CTriangle.h"
@@ -11,12 +11,11 @@ ShapeCreator::ShapeCreator(std::istream& input)
 		  { "triangle", std::bind(&ShapeCreator::CreateTriangle, this, std::placeholders::_1) },
 
 		  { "rectangle", std::bind(&ShapeCreator::CreateRectangle, this, std::placeholders::_1) } })
-	/*,
-	  { "circle", std::bind(&CreateShape::CreateCircle, this, std::placeholders::_1) } })
-	*/
+	//  { "circle", std::bind(&ShapeCreator::CreateCircle, this, std::placeholders::_1) } })
+
 	, m_input(input){};
 
-std::shared_ptr<IShape> ShapeCreator::ExecuteCommand() const
+std::shared_ptr<IShape> ShapeCreator::CreateShape() const
 {
 	std::string commandLine;
 	std::getline(m_input, commandLine);
@@ -136,3 +135,27 @@ std::shared_ptr<IShape> ShapeCreator::CreateRectangle(std::istream& args) const
 	}
 	return std::make_shared<CRectangle>(leftTop, rigthBottom, outlineColor, fillColor);
 }
+
+/*
+std::shared_ptr<IShape> ShapeCreator::CreateCircle(std::istream& args) const
+{
+	CPoint center;
+	double radius;
+	std::string outlineColor, fillColor, inputValue;
+	try
+	{
+
+		args >> inputValue;
+		center.x = std::stod(inputValue);
+		args >> inputValue;
+		center.y = std::stod(inputValue);
+
+		inputValue.clear();
+
+		args >> inputValue;
+		radius = std::stoi(inputValue);
+		args >> outlineColor;
+
+		args >> fillColor;
+	}
+	*/
