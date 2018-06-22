@@ -1,7 +1,7 @@
 #include "../../Catch/catch.hpp"
 #include "../lab4/CTriangle.h"
 
-TEST_CASE("sd")
+TEST_CASE("Can take a info")
 {
 	CTriangle triangle({ 1, 2 }, { 3, 4 }, { 4, 2 }, "#fff", "#000");
 	CHECK(triangle.ToString() == R"(Shape: triangle
@@ -14,7 +14,6 @@ Outline color: #fff
 )");
 }
 
-/*
 TEST_CASE("triangle has a coordinates")
 {
 	CTriangle triangle({ 1, 2 }, { 3, 4 }, { 4, 1 }, "#fff", "#000");
@@ -45,9 +44,8 @@ TEST_CASE("triangle has info")
 Vertex1: 1.000000 2.000000
 Vertex2: 3.000000 4.000000
 Vertex3: 4.000000 2.000000
-Area: 6.000000
-Perimetr: 8.064495
+Area: 6
+Perimetr: 8.0645
 Outline color: #fff
 )");
 }
-*/
