@@ -20,7 +20,6 @@ CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 		throw std::invalid_argument("invalid argument \n");
 	}
 	m_timestamp = SECONDS_IN_HOUR * hours + SECONDS_IN_MINUTE * minutes + seconds;
-	std::cout << "timestamp : " << m_timestamp << "end\n";
 }
 
 unsigned CTime::GetHours() const
@@ -54,30 +53,20 @@ unsigned CTime::GetM_Time() const
 
 CTime& CTime::operator++()
 {
-	if (m_timestamp >= SECONDS_IN_DAY)
-	{
-		m_timestamp = m_timestamp - SECONDS_IN_DAY;
-	}
-	else
-	{
-		++m_timestamp;
-	}
-	return *this;
-}
-
-CTime const CTime::operator++(int)
-{
-	// создаем копию, выполняем предынкремент и возвращаем копию
-	//CCounter tmpCopy(*this);
-	//++*this;
-	//return tmpCopy;
-	unsigned tmpTime = m_timestamp;
 	++m_timestamp;
 	if (m_timestamp >= SECONDS_IN_DAY)
 	{
 		m_timestamp = m_timestamp - SECONDS_IN_DAY;
 	}
-	return CTime(tmpTime);
+
+	return *this;
+}
+
+CTime const CTime::operator++(int)
+{
+	CTime tmpTime(*this);
+	++*this;
+	return tmpTime;
 }
 
 CTime& CTime::operator--()
@@ -99,22 +88,14 @@ CTime const CTime::operator--(int)
 	//CCounter tmpCopy(*this);
 	//++*this;
 	//return tmpCopy;
-	unsigned tmpTime = m_timestamp;
-	if (m_timestamp == 0)
-	{
-		tmpTime = SECONDS_IN_DAY - 1;
-	}
-	else
-	{
-		--m_timestamp;
-	}
+	CTime tmpTime(*this);
+	--*this;
 	return tmpTime;
 }
 
 CTime CTime::operator+(CTime const& time2) const
 {
 	unsigned sum = m_timestamp + time2.m_timestamp;
-	std::cout << "sum: " << sum << "\n";
 	return CTime(PreventOverFlowSecond(sum));
 }
 
@@ -150,4 +131,54 @@ CTime CTime::operator-=(CTime const& time)
 		m_timestamp -= time.m_timestamp;
 	}
 	return m_timestamp;
+}
+
+CTime const CTime::operator*(int const arg) const
+{
+	unsigned result = m_timestamp * arg;
+
+	return CTime(PreventOverFlowSecond(result));
+}
+
+/*
+CTime const CTime::operator*(CTime time, int const arg) const
+{
+	unsigned result = arg * m_timestamp;
+	return CTime(result);
+}
+*/
+
+CTime const CTime::operator/(int const arg) const
+{
+	if (arg == 0)
+	{
+		throw std::invalid_argument("Arg can't be a zero");
+	}
+	else
+	{
+		return m_timestamp / arg;
+	}
+};
+
+CTime CTime::operator*=(CTime const& time)
+{
+	m_timestamp *= time.m_timestamp;
+	return PreventOverFlowSecond(m_timestamp);
+}
+
+CTime CTime::operator/=(CTime const& time)
+{
+	m_timestamp /= time.m_timestamp;
+	return m_timestamp;
+}
+
+bool CTime::operator==(CTime const& time) const
+{
+	std::cout << m_timestamp << " " << time.m_timestamp;
+	return (m_timestamp == time.m_timestamp);
+}
+
+bool CTime::operator!=(CTime const& time) const
+{
+	return (m_timestamp != time.m_timestamp);
 }

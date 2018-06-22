@@ -40,7 +40,16 @@ public:
 	CTime operator+=(CTime const& time);
 	CTime operator-=(CTime const& time);
 
-	CTime operator*(CTime const* scalar) const;
+	//CTime const operator*(int arg, CTime const& time);
+
+	CTime const operator*(int const arg) const;
+	CTime const operator/(int const arg) const;
+
+	CTime operator*=(CTime const& time);
+	CTime operator/=(CTime const& time);
+
+	bool operator==(CTime const& time) const;
+	bool operator!=(CTime const& time) const;
 
 private:
 	unsigned m_timestamp = 0;
