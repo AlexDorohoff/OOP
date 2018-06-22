@@ -84,10 +84,6 @@ CTime& CTime::operator--()
 
 CTime const CTime::operator--(int)
 {
-	// создаем копию, выполняем предынкремент и возвращаем копию
-	//CCounter tmpCopy(*this);
-	//++*this;
-	//return tmpCopy;
 	CTime tmpTime(*this);
 	--*this;
 	return tmpTime;
@@ -181,4 +177,52 @@ bool CTime::operator==(CTime const& time) const
 bool CTime::operator!=(CTime const& time) const
 {
 	return (m_timestamp != time.m_timestamp);
+}
+
+bool CTime::operator<(CTime const& time) const
+{
+	if (m_timestamp < time.m_timestamp)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool CTime::operator>(CTime const& time) const
+{
+	if (m_timestamp > time.m_timestamp)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool CTime::operator<=(CTime const& time) const
+{
+	if (m_timestamp <= time.m_timestamp)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool CTime::operator>=(CTime const& time) const
+{
+	if (m_timestamp >= time.m_timestamp)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

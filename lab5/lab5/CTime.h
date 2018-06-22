@@ -51,6 +51,12 @@ public:
 	bool operator==(CTime const& time) const;
 	bool operator!=(CTime const& time) const;
 
+	bool operator<(CTime const& time) const;
+	bool operator>(CTime const& time) const;
+
+	bool operator<=(CTime const& time) const;
+	bool operator>=(CTime const& time) const;
+
 private:
 	unsigned m_timestamp = 0;
 };
