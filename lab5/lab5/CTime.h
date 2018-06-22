@@ -34,8 +34,8 @@ public:
 	CTime& operator--();
 	CTime const operator--(int);
 
-	CTime& operator+(CTime const& time2);
-	CTime& operator-();
+	CTime operator+(CTime const& time2) const;
+	CTime operator-(CTime const& time2) const;
 
 private:
 	unsigned m_timestamp = 0;

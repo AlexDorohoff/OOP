@@ -8,6 +8,11 @@ constexpr unsigned SECONDS_IN_DAY = 86400;
 constexpr unsigned HOURS_IN_DAY = 24;
 constexpr unsigned MINUTES_IN_HOUR = 60;
 
+unsigned PreventOverFlowSecond(unsigned timeStamp)
+{
+	return timeStamp % SECONDS_IN_DAY;
+}
+
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 {
 	if (hours > HOURS_IN_DAY || minutes > MINUTES_IN_HOUR || seconds > SECONDS_IN_MINUTE)
@@ -67,15 +72,12 @@ CTime const CTime::operator++(int)
 	//++*this;
 	//return tmpCopy;
 	unsigned tmpTime = m_timestamp;
-	if (tmpTime >= SECONDS_IN_DAY)
+	++m_timestamp;
+	if (m_timestamp >= SECONDS_IN_DAY)
 	{
-		tmpTime = tmpTime - SECONDS_IN_DAY;
+		m_timestamp = m_timestamp - SECONDS_IN_DAY;
 	}
-	else
-	{
-		m_timestamp++;
-	}
-	return tmpTime;
+	return CTime(tmpTime);
 }
 
 CTime& CTime::operator--()
@@ -109,8 +111,16 @@ CTime const CTime::operator--(int)
 	return tmpTime;
 }
 
-CTime& CTime::operator+(CTime const& time2)
+CTime CTime::operator+(CTime const& time2) const
 {
-	CTime time3;
-	unsigned sum = m_timestamp + time2.GetSeconds();
-	return time3(sum);
+	unsigned sum = m_timestamp + time2.m_timestamp;
+	std::cout << "sum: " << sum << "\n";
+	return CTime(PreventOverFlowSecond(sum));
+}
+
+CTime CTime::operator-(CTime const& time2) const
+{
+	unsigned result = 0;
+	result = m_timestamp - time2.m_timestamp;
+	return result;
+}
