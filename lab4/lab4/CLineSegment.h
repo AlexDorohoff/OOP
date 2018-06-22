@@ -1,5 +1,4 @@
 #pragma once
-#include "CShape.h"
 #include "IShape.h"
 
 class CLineSegment final : public IShape

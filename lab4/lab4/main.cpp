@@ -18,9 +18,9 @@ int main()
 {
 
 	std::vector<std::shared_ptr<IShape>> shapes;
-	ShapeCreator createdShape(std::cin);
+	ShapeCreator inputShape(std::cin);
 
-	while (auto shape = createdShape.CreateShape())
+	while (auto shape = inputShape.CreateShape())
 	{
 		shapes.push_back(shape);
 	}

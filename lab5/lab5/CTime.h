@@ -6,13 +6,14 @@ class CTime
 {
 
 public:
+	CTime();
 	// инициализирует время заданным количеством часов, минут и секунд
 
 	CTime(unsigned hours, unsigned minutes, unsigned seconds = 0);
 
 	// инициализирует время количеством секунд после полуночи
 
-	CTime(unsigned timeStamp = 0);
+	explicit CTime(unsigned timeStamp = 0);
 
 	// возвращает количество часов
 
@@ -45,8 +46,8 @@ public:
 	CTime const operator*(int const arg) const;
 	CTime const operator/(int const arg) const;
 
-	CTime operator*=(CTime const& time);
-	CTime operator/=(CTime const& time);
+	CTime operator*=(int const& time);
+	int operator/=(CTime const& time);
 
 	bool operator==(CTime const& time) const;
 	bool operator!=(CTime const& time) const;

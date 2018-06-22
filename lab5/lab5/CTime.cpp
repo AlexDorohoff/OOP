@@ -13,9 +13,14 @@ unsigned PreventOverFlowSecond(unsigned timeStamp)
 	return timeStamp % SECONDS_IN_DAY;
 }
 
+CTime::CTime()
+	: m_timestamp(0)
+{
+}
+
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 {
-	if (hours > HOURS_IN_DAY || minutes > MINUTES_IN_HOUR || seconds > SECONDS_IN_MINUTE)
+	if (hours >= HOURS_IN_DAY || minutes >= MINUTES_IN_HOUR || seconds >= SECONDS_IN_MINUTE)
 	{
 		throw std::invalid_argument("invalid argument \n");
 	}
@@ -106,14 +111,14 @@ CTime CTime::operator-(CTime const& time2) const
 	{
 		result = m_timestamp - time2.m_timestamp;
 	}
-	return result;
+	return CTime(result);
 }
 
 CTime CTime::operator+=(CTime const& time)
 {
 
 	m_timestamp += time.m_timestamp;
-	return PreventOverFlowSecond(m_timestamp);
+	return CTime(PreventOverFlowSecond(m_timestamp));
 }
 
 CTime CTime::operator-=(CTime const& time)
@@ -126,7 +131,7 @@ CTime CTime::operator-=(CTime const& time)
 	{
 		m_timestamp -= time.m_timestamp;
 	}
-	return m_timestamp;
+	return CTime(m_timestamp);
 }
 
 CTime const CTime::operator*(int const arg) const
@@ -152,17 +157,17 @@ CTime const CTime::operator/(int const arg) const
 	}
 	else
 	{
-		return m_timestamp / arg;
+		return CTime(m_timestamp / arg);
 	}
 };
 
-CTime CTime::operator*=(CTime const& time)
+CTime CTime::operator*=(int const& time)
 {
-	m_timestamp *= time.m_timestamp;
-	return PreventOverFlowSecond(m_timestamp);
+	m_timestamp *= time;
+	return CTime(PreventOverFlowSecond(m_timestamp));
 }
 
-CTime CTime::operator/=(CTime const& time)
+int CTime::operator/=(CTime const& time)
 {
 	m_timestamp /= time.m_timestamp;
 	return m_timestamp;
@@ -181,48 +186,20 @@ bool CTime::operator!=(CTime const& time) const
 
 bool CTime::operator<(CTime const& time) const
 {
-	if (m_timestamp < time.m_timestamp)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (m_timestamp < time.m_timestamp);
 }
 
 bool CTime::operator>(CTime const& time) const
 {
-	if (m_timestamp > time.m_timestamp)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (m_timestamp > time.m_timestamp);
 }
 
 bool CTime::operator<=(CTime const& time) const
 {
-	if (m_timestamp <= time.m_timestamp)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (m_timestamp <= time.m_timestamp);
 }
 
 bool CTime::operator>=(CTime const& time) const
 {
-	if (m_timestamp >= time.m_timestamp)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (m_timestamp >= time.m_timestamp);
 }
