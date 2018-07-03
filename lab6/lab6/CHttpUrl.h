@@ -3,7 +3,7 @@
 #include <string>
 
 constexpr int minPortNumber = 0;
-constexpr int maxPortNumber = 65535;
+constexpr int maxPortNumber = 65536;
 constexpr unsigned short defaultHttpPort = 80;
 constexpr unsigned short defaultHttpsPort = 443;
 
@@ -15,9 +15,7 @@ enum Protocol
 };
 
 class CHttpUrl
-
 {
-
 public:
 	// выполн€ет парсинг строкового представлени€ URL-а, в случае ошибки парсинга
 	// выбрасыват исключение CUrlParsingError, содержащее текстовое описание ошибки

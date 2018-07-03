@@ -19,14 +19,17 @@ Protocol ParseProtocol(const std::string& protocol)
 
 std::string ProtocolToString(Protocol protocol)
 {
+	std::string stringProtocol;
 	if (protocol == HTTP)
 	{
-		return "http";
+		stringProtocol = "http";
 	}
 	if (protocol == HTTPS)
 	{
-		return "https";
+		stringProtocol = "https";
 	}
+
+	return stringProtocol;
 }
 
 std::string ParseDomain(const std::string& domain)
@@ -40,15 +43,7 @@ std::string ParseDomain(const std::string& domain)
 
 unsigned short ParsePort(std::string const& inpPortNum, Protocol protocol)
 {
-	if (!inpPortNum.empty())
-	{
-		int port = std::stoi(inpPortNum);
-		if (port > minPortNumber && port < maxPortNumber)
-		{
-			return port;
-		}
-	}
-	else if (inpPortNum.empty())
+	if (inpPortNum.empty())
 	{
 		if (protocol == HTTP)
 		{
@@ -57,6 +52,14 @@ unsigned short ParsePort(std::string const& inpPortNum, Protocol protocol)
 		else if (protocol == HTTPS)
 		{
 			return defaultHttpsPort;
+		}
+	}
+	else if (!inpPortNum.empty())
+	{
+		int port = std::stoi(inpPortNum);
+		if (port > minPortNumber && port < maxPortNumber)
+		{
+			return port;
 		}
 	}
 
@@ -81,6 +84,7 @@ CHttpUrl::CHttpUrl(std::string const& url)
 	m_protocol = ParseProtocol(result[1]);
 	m_domain = ParseDomain(result[2]);
 	m_port = ParsePort(result[3], m_protocol);
+	std::cout << "m_port" << m_port << std::endl;
 	m_document = result[4];
 };
 
@@ -92,6 +96,8 @@ CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Proto
 		m_domain = domain;
 	else
 		throw CUrlParsingError("Domain can't be empty");
+
+	port = 0;
 }
 
 std::string CHttpUrl::GetURL() const

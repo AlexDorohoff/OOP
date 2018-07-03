@@ -20,11 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{47831D00-F031-4044-B239-3FD9BB00BCAE}</ProjectGuid>
+    <ProjectGuid>{17584919-E946-4CC4-AE02-8DD102ADB8D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>HTPPTest</RootNamespace>
+    <RootNamespace>HTTPTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
-    <ProjectName>HTPP_Test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -166,7 +165,7 @@
   <ItemGroup>
     <ClCompile Include="..\lab6\CHttpUrl.cpp" />
     <ClCompile Include="..\lab6\CUrlParsingError.cpp" />
-    <ClCompile Include="CHttp_Test.cpp" />
+    <ClCompile Include="HTTP_Test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
