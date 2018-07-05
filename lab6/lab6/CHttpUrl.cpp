@@ -43,7 +43,17 @@ std::string ParseDomain(const std::string& domain)
 
 unsigned short ParsePort(std::string const& inpPortNum, Protocol protocol)
 {
-	if (inpPortNum.empty())
+	int port = 0;
+
+	if (!inpPortNum.empty())
+	{
+		port = std::stoi(inpPortNum);
+		if (port > minPortNumber && port < maxPortNumber)
+		{
+			return port;
+		}
+	}
+	else if (inpPortNum.empty())
 	{
 		if (protocol == HTTP)
 		{
@@ -54,16 +64,25 @@ unsigned short ParsePort(std::string const& inpPortNum, Protocol protocol)
 			return defaultHttpsPort;
 		}
 	}
-	else if (!inpPortNum.empty())
-	{
-		int port = std::stoi(inpPortNum);
-		if (port > minPortNumber && port < maxPortNumber)
-		{
-			return port;
-		}
-	}
-
 	throw CUrlParsingError("not valid port num");
+}
+
+std::string ParseDocument(std::string const& inputData)
+{
+	if (inputData.empty() || (inputData[0] != '/'))
+	{
+		return "/" + inputData;
+	}
+	return inputData;
+};
+
+unsigned short GetDeafaultPort(Protocol protocol)
+{
+	if (protocol == HTTP)
+	{
+		return defaultHttpPort;
+	}
+	return defaultHttpsPort;
 }
 
 } // namespace
@@ -84,28 +103,28 @@ CHttpUrl::CHttpUrl(std::string const& url)
 	m_protocol = ParseProtocol(result[1]);
 	m_domain = ParseDomain(result[2]);
 	m_port = ParsePort(result[3], m_protocol);
-	std::cout << "m_port" << m_port << std::endl;
 	m_document = result[4];
 };
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol)
-	: m_protocol(protocol)
-	, m_document(document)
 {
+	m_document;
+	m_port = GetDeafaultPort(protocol);
 	if (!domain.empty())
-		m_domain = domain;
+		m_domain = ParseDomain(domain);
 	else
 		throw CUrlParsingError("Domain can't be empty");
-
-	port = 0;
 }
+
+CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned short port){
+
+};
 
 std::string CHttpUrl::GetURL() const
 {
 	std::string url;
-
-	url.append(ProtocolToString(GetProtocol()) + "://");
-
+	Protocol protocol = GetProtocol();
+	url.append(ProtocolToString(protocol) + "://");
 	url.append(GetDomain());
 
 	int port = GetPort();
@@ -114,10 +133,11 @@ std::string CHttpUrl::GetURL() const
 		url.append(":" + std::to_string(port));
 	}
 
-	std::string document = GetDocument();
+	std::string document = ParseDocument(GetDocument());
+	std::cout << "document" << document;
 	if (!(document.empty()))
 	{
-		url.append("/" + document);
+		url.append(document);
 	}
 
 	return url;
