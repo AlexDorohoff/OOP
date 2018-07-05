@@ -48,7 +48,7 @@ unsigned short ParsePort(std::string const& inpPortNum, Protocol protocol)
 	if (!inpPortNum.empty())
 	{
 		port = std::stoi(inpPortNum);
-		if (port > minPortNumber && port < maxPortNumber)
+		if (port >= minPortNumber && port <= maxPortNumber)
 		{
 			return port;
 		}
@@ -108,12 +108,11 @@ CHttpUrl::CHttpUrl(std::string const& url)
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol)
 {
-	m_document;
-	m_port = GetDeafaultPort(protocol);
-	if (!domain.empty())
-		m_domain = ParseDomain(domain);
-	else
-		throw CUrlParsingError("Domain can't be empty");
+	m_domain = ParseDomain(domain);
+	m_document = ParseDocument(document);
+	m_protocol = protocol;
+	m_port = GetDeafaultPort(m_protocol);
+	m_url = ProtocolToString(m_protocol) + "://" + m_domain + m_document;
 }
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned short port){

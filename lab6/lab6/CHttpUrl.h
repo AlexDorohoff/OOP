@@ -2,8 +2,8 @@
 #include "CUrlParsingError.h"
 #include <string>
 
-constexpr int minPortNumber = 0;
-constexpr int maxPortNumber = 65536;
+constexpr int minPortNumber = 1;
+constexpr int maxPortNumber = 65535;
 constexpr unsigned short defaultHttpPort = 80;
 constexpr unsigned short defaultHttpsPort = 443;
 
