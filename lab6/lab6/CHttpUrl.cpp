@@ -112,7 +112,6 @@ CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Proto
 	m_document = ParseDocument(document);
 	m_protocol = protocol;
 	m_port = GetDeafaultPort(m_protocol);
-	m_url = ProtocolToString(m_protocol) + "://" + m_domain + m_document;
 }
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned short port){
@@ -133,7 +132,6 @@ std::string CHttpUrl::GetURL() const
 	}
 
 	std::string document = ParseDocument(GetDocument());
-	std::cout << "document" << document;
 	if (!(document.empty()))
 	{
 		url.append(document);
