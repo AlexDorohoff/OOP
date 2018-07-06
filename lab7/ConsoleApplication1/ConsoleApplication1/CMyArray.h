@@ -84,6 +84,29 @@ public:
 	{
 		return m_endOfCapacity - m_begin;
 	}
+
+	T& operator[](size_t index)
+	{
+		if (index >= GetSize())
+		{
+			throw std::out_of_range("index parametr out of range");
+		}
+
+		return m_begin[index];
+	}
+
+	T const& operator[](size_t index) const
+	{
+		if (index >= SIZE)
+			throw std::out_of_range("Index is out of range");
+		return m_begin[index];
+	}
+
+	/*
+	Возможность осуществления индексированного доступа к элементам массива при помощи оператора «[]».В случае, 
+	если индекс элемента выходит за пределы массива, должно выбрасываться исключение std::out_of_range
+	*/
+
 	~CMyArray()
 	{
 		DeleteItems(m_begin, m_end);
