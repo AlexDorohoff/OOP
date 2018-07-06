@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "CSolidShape.h"
+#include "CShape.h"
 
 std::string CSolidShape::GetFillColor() const
 {

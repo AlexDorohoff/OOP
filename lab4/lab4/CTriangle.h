@@ -1,6 +1,5 @@
 #pragma once
 #include "CSolidShape.h"
-
 class CTriangle final : public CSolidShape
 {
 public:

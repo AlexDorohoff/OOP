@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-class CShape : public IShape
+class CShape : public virtual IShape
 {
 public:
 	std::string GetOutlineColor() const override final;
