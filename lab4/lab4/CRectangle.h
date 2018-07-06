@@ -21,8 +21,6 @@ private:
 	void AppendProperties(std::ostream& strm) const override;
 	CPoint m_leftTop;
 	CPoint m_rightBottom;
-	double m_width;
-	double m_height;
 	std::string m_outlineColor;
 	std::string m_fillColor;
 };

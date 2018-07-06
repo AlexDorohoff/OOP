@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ShapeCreator.h"
+#include "CCircle.h"
 #include "CLineSegment.h"
 #include "CRectangle.h"
 #include "CTriangle.h"
@@ -7,11 +8,9 @@
 #include "ISolidShape.h"
 ShapeCreator::ShapeCreator(std::istream& input)
 	: m_actionMap({ { "line", std::bind(&ShapeCreator::CreateLine, this, std::placeholders::_1) },
-
 		  { "triangle", std::bind(&ShapeCreator::CreateTriangle, this, std::placeholders::_1) },
-
-		  { "rectangle", std::bind(&ShapeCreator::CreateRectangle, this, std::placeholders::_1) } })
-	//  { "circle", std::bind(&ShapeCreator::CreateCircle, this, std::placeholders::_1) } })
+		  { "rectangle", std::bind(&ShapeCreator::CreateRectangle, this, std::placeholders::_1) },
+		  { "circle", std::bind(&ShapeCreator::CreateCircle, this, std::placeholders::_1) } })
 
 	, m_input(input){};
 
@@ -136,26 +135,35 @@ std::shared_ptr<IShape> ShapeCreator::CreateRectangle(std::istream& args) const
 	return std::make_shared<CRectangle>(leftTop, rigthBottom, outlineColor, fillColor);
 }
 
-/*
 std::shared_ptr<IShape> ShapeCreator::CreateCircle(std::istream& args) const
 {
 	CPoint center;
 	double radius;
-	std::string outlineColor, fillColor, inputValue;
+	std::string outlineColor, fillColor, input;
+
 	try
 	{
+		args >> input;
+		center.x = std::stod(input);
+		input.clear();
+		args >> input;
+		center.y = std::stod(input);
+		input.clear();
+		args >> input;
+		radius = std::stod(input);
 
-		args >> inputValue;
-		center.x = std::stod(inputValue);
-		args >> inputValue;
-		center.y = std::stod(inputValue);
-
-		inputValue.clear();
-
-		args >> inputValue;
-		radius = std::stoi(inputValue);
-		args >> outlineColor;
-
-		args >> fillColor;
+		if (!args.eof())
+		{
+			args >> outlineColor;
+			args >> fillColor;
+		}
 	}
-	*/
+	catch (const std::exception&)
+	{
+		return nullptr;
+	}
+	if (!fillColor.empty())
+		return std::make_shared<CCircle>(center, radius, outlineColor, fillColor);
+	else
+		return std::make_shared<CCircle>(center, radius);
+}

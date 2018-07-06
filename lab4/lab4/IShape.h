@@ -1,5 +1,6 @@
 
 #pragma once
+#include "stdafx.h"
 
 class CPoint
 {
@@ -11,12 +12,11 @@ public:
 class IShape
 {
 public:
-	virtual double GetArea() const = 0;
-	virtual double GetPerimeter() const = 0;
-	virtual std::string ToString() const = 0;
-	virtual std::string GetOutlineColor() const = 0;
-
 	virtual ~IShape(){};
+	virtual double GetPerimeter() const = 0;
+	virtual double GetArea() const = 0;
+	virtual std::string GetOutlineColor() const = 0;
+	virtual std::string ToString() const = 0;
 
 private:
 };

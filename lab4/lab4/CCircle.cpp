@@ -3,12 +3,18 @@
 constexpr double PI = 3.141592653589793238463;
 using namespace std;
 
-CCircle::CCircle(CPoint const& center, int& radius, std::string const& outlineColor, std::string const& fillColor)
-	: m_fillColor(fillColor)
-	, m_outlineColor(outlineColor)
-	, m_center(center)
+CCircle::CCircle(CPoint const& center, double radius)
+	: m_center(center)
 	, m_radius(radius)
 {
+}
+
+CCircle::CCircle(CPoint const& center, double& radius, std::string const& outlineColor, std::string const& fillColor)
+	: m_center(center)
+	, m_radius(radius)
+{
+	SetOutlineColor(outlineColor);
+	SetFillColor(fillColor);
 }
 double CCircle::GetArea() const
 {
@@ -20,22 +26,20 @@ double CCircle::GetPerimeter() const
 	return 2 * PI * m_radius;
 }
 
-std::string CCircle::ToString() const
-{
-	return static_cast<string>("Shape: circle ") + static_cast<string>("Area: ") + to_string(GetArea()) + static_cast<string>(" Perimetr: ") + to_string(GetPerimeter()) + static_cast<string>(" Outline color: ") + GetOutlineColor() + static_cast<string>(" Fill color: ") + GetFillColor() + "\n";
-}
-
 CPoint CCircle::GetCenter() const
 {
-	return CPoint();
-}
-
-std::string CCircle::GetFillColor() const
-{
-	return m_fillColor;
+	return m_center;
 }
 
 double CCircle::GetRadius() const
 {
 	return m_radius;
+}
+
+void CCircle::AppendProperties(std::ostream& strm) const
+{
+	strm << "Shape: Circle"
+		 << "\nRadius: " << std::to_string(GetRadius())
+		 << "\nCenter: "
+		 << "x :" << std::to_string(GetCenter().x) << "y : " << std::to_string(GetCenter().y);
 }

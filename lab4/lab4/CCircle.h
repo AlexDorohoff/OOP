@@ -1,22 +1,21 @@
 #pragma once
-#include "IShape.h"
-#include "ISolidShape.h"
+#include "CSolidShape.h"
 
-class CCircle final : public ISolidShape
+class CCircle final : public CSolidShape
 {
 public:
-	CCircle(CPoint const& center, int& radius, std::string const& outlineColor, std::string const& fillColor);
-	std::string GetFillColor() const override;
+	CCircle(CPoint const& center, double radius);
+	CCircle(CPoint const& center, double& radius, std::string const& outlineColor, std::string const& fillColor);
 	double GetArea() const;
 	double GetPerimeter() const;
-	std::string ToString() const;
 
 	CPoint GetCenter() const;
 	double GetRadius() const;
 
 private:
+	void AppendProperties(std::ostream& strm) const override;
 	CPoint m_center;
-	int m_radius;
+	double m_radius;
 	std::string m_outlineColor;
 	std::string m_fillColor;
 };

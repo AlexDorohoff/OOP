@@ -114,8 +114,12 @@ CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Proto
 	m_port = GetDeafaultPort(m_protocol);
 }
 
-CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned short port){
-
+CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned short port)
+{
+	m_domain = ParseDomain(domain);
+	m_document = ParseDocument(document);
+	m_protocol = protocol;
+	m_port = ParsePort(std::to_string(port), protocol);
 };
 
 std::string CHttpUrl::GetURL() const

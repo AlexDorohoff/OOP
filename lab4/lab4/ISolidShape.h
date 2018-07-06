@@ -8,5 +8,4 @@ public:
 	virtual std::string GetFillColor() const = 0;
 
 private:
-	virtual void AppendProperties(std::ostream& strm) const = 0;
 };

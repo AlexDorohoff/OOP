@@ -7,8 +7,8 @@ CRectangle::CRectangle(const CPoint& leftTop, const CPoint& rightBottom, const s
 	: m_leftTop(leftTop)
 	, m_rightBottom(rightBottom)
 {
-	SetOutlineColor(outlineColor);
 	SetFillColor(fillColor);
+	SetOutlineColor(outlineColor);
 };
 double CRectangle::GetWidth() const
 {

@@ -23,12 +23,12 @@ double CLineSegment::GetPerimeter() const
 	return hypot(m_startPoint.x - m_endPoint.x, m_startPoint.y - m_endPoint.y);
 }
 
-void CLineSegment::AppendProperties(std::ostream& strm) const
-{
-	strm << ("Shape: line");
-};
-
 double CLineSegment::GetArea() const
 {
 	return 0;
+};
+
+void CLineSegment::AppendProperties(std::ostream& strm) const
+{
+	strm << "Shape: line";
 };

@@ -8,9 +8,9 @@ CTriangle::CTriangle(CPoint const& vertex1, CPoint const& vertex2, CPoint const&
 	: m_vertex1(vertex1)
 	, m_vertex2(vertex2)
 	, m_vertex3(vertex3)
-	, m_fillColor(fillColor)
 {
 	SetOutlineColor(outlineColor);
+	SetFillColor(fillColor);
 }
 
 CPoint CTriangle::GetVertex1() const

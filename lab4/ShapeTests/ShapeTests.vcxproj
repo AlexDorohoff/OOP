@@ -167,18 +167,18 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\lab4\CCircle.cpp" />
     <ClCompile Include="..\lab4\CLineSegment.cpp" />
     <ClCompile Include="..\lab4\CRectangle.cpp" />
     <ClCompile Include="..\lab4\CShape.cpp" />
     <ClCompile Include="..\lab4\CSolidShape.cpp" />
     <ClCompile Include="..\lab4\CTriangle.cpp" />
-    <ClCompile Include="..\lab4\ISolidShape.cpp" />
     <ClCompile Include="..\lab4\ShapeCreator.cpp" />
+    <ClCompile Include="CCircleTest.cpp" />
     <ClCompile Include="ClineSegmenTest.cpp" />
     <ClCompile Include="CRectangleTest.cpp" />
     <ClCompile Include="CTriangleTest.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShapeTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
