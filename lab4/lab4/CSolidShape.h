@@ -9,6 +9,7 @@ public:
 	std::string
 	GetFillColor() const override final;
 	void SetFillColor(std::string const& color);
+	virtual void AppendProperties(std::ostream& strm) const = 0;
 
 private:
 	std::string m_fillColor;

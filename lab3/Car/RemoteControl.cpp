@@ -102,9 +102,6 @@ bool CDriveControl::SetGear(istream& args)
 	int gear;
 	string input;
 	args >> input;
-	if (is_numeric(args))
-	{
-	}
 	if (TakeArg(input, gear))
 	{
 		if ((gear < -1) || (gear > 5))
