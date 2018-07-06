@@ -69,7 +69,7 @@ unsigned short ParsePort(std::string const& inpPortNum, Protocol protocol)
 
 std::string ParseDocument(std::string const& inputData)
 {
-	if (inputData.empty() || (inputData[0] != '/'))
+	if (!inputData.empty() && inputData[0] != '/')
 	{
 		return "/" + inputData;
 	}
@@ -103,7 +103,7 @@ CHttpUrl::CHttpUrl(std::string const& url)
 	m_protocol = ParseProtocol(result[1]);
 	m_domain = ParseDomain(result[2]);
 	m_port = ParsePort(result[3], m_protocol);
-	m_document = result[4];
+	m_document = ParseDocument(result[4]);
 };
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol)
@@ -130,7 +130,7 @@ std::string CHttpUrl::GetURL() const
 	url.append(GetDomain());
 
 	int port = GetPort();
-	if (!((port == defaultHttpPort) || (port == defaultHttpsPort)))
+	if (!(((port == defaultHttpPort) && (protocol == HTTP)) || ((port == defaultHttpsPort) && (protocol == HTTPS))))
 	{
 		url.append(":" + std::to_string(port));
 	}
@@ -162,12 +162,4 @@ unsigned short CHttpUrl::GetPort() const
 Protocol CHttpUrl::GetProtocol() const
 {
 	return m_protocol;
-}
-void CHttpUrl::PrintInfo() const
-{
-	std::cout << "url: " << GetURL() << "\n"
-			  << "protocol: " << ProtocolToString(GetProtocol()) << "\n"
-			  << "domain: " << GetDomain() << "\n"
-			  << "document: " << GetDocument() << "\n"
-			  << "port: " << GetPort() << "\n";
 }
