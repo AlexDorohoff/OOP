@@ -92,6 +92,7 @@ public:
 
 	T& operator[](size_t index)
 	{
+		size_t Size = GetSize();
 		if (index >= GetSize())
 		{
 			throw std::out_of_range("index out of range");
@@ -102,7 +103,8 @@ public:
 
 	T const& operator[](size_t index) const
 	{
-		if (index >= SIZE)
+		size_t Size = GetSize();
+		if (index >= Size)
 			throw std::out_of_range("Index is out of range");
 		return m_begin[index];
 	}
@@ -111,14 +113,20 @@ public:
 	Возможность изменения длины массива при помощи метода Resize().В случае, если новая длина массива 
 	больше прежней, вставляемые в конец массива элементы должны инициализироваться значением по умолчанию для типа T.
 	*/
-
+	/*
 	void Resize(const size_t& newSize)
 	{
-		if (GetSize() > newSize)
+		size_t size = GetSize();
+		if (size() > newSize)
 		{
+			m_end = m_end - (size - newSize);
+		}
+		else if (size < newSize)
+		{
+			m_end = m_end + (newSize - m_end)
 		}
 	}
-
+	*/
 	~CMyArray()
 	{
 		DeleteItems(m_begin, m_end);
