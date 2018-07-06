@@ -163,3 +163,11 @@ Protocol CHttpUrl::GetProtocol() const
 {
 	return m_protocol;
 }
+void CHttpUrl::PrintInfo() const
+{
+	std::cout << "url: " << GetURL() << "\n"
+			  << "protocol: " << ProtocolToString(GetProtocol()) << "\n"
+			  << "domain: " << GetDomain() << "\n"
+			  << "document: " << GetDocument() << "\n"
+			  << "port: " << GetPort() << "\n";
+}

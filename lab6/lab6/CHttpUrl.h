@@ -71,6 +71,8 @@ public:
 
 	unsigned short GetPort() const;
 
+	void PrintInfo() const;
+
 private:
 	Protocol m_protocol;
 	std::string m_domain;
