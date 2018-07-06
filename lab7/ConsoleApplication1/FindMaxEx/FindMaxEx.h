@@ -1,7 +1,9 @@
 #pragma once
-template <typename T, typename Less>
+#include <functional>
+#include <vector>
 
-bool FindMax(std::vector<T> const& arr, T& maxValue, Less const& less)
+template <typename T, typename Less>
+bool FindMaxEx(std::vector<T> const& arr, T& maxValue, Less const& less)
 {
 	if (arr.empty())
 	{
@@ -9,10 +11,14 @@ bool FindMax(std::vector<T> const& arr, T& maxValue, Less const& less)
 	}
 
 	size_t size = arr.size();
+	const T* max = &arr[0];
 	for (size_t i = 0; i < size; i++)
 	{
-		*maxValue = less(arr[i], *maxValue);
+		if (less(*max, arr[i]))
+		{
+			max = &arr[i];
+		}
 	}
-
-	return *maxValue;
+	maxValue = *max;
+	return true;
 }
