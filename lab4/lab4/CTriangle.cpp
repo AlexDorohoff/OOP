@@ -49,3 +49,13 @@ void CTriangle::AppendProperties(std::ostream& strm) const
 		 << "\nVertex2: " << std::to_string(m_vertex2.x) << " " << std::to_string(m_vertex2.y)
 		 << "\nVertex3: " << std::to_string(m_vertex3.x) << " " + std::to_string(m_vertex3.y);
 };
+
+std::string CTriangle::ToString() const
+{
+	return CShape::ToString();
+};
+
+std::string CTriangle::GetOutlineColor() const
+{
+	return CShape::GetOutlineColor();
+};

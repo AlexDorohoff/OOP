@@ -5,7 +5,6 @@
 
 class CRectangle final : public CSolidShape
 {
-
 public:
 	CRectangle(const CPoint& leftTop, const CPoint& rightBottom, const std::string outlineColor, std::string fillColor);
 
@@ -16,6 +15,8 @@ public:
 	CPoint GetRightBottom() const;
 	double GetWidth() const;
 	double GetHeight() const;
+	std::string ToString() const override;
+	std::string GetOutlineColor() const override;
 
 private:
 	void AppendProperties(std::ostream& strm) const override;

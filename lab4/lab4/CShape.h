@@ -6,7 +6,7 @@
 class CShape : public virtual IShape
 {
 public:
-	std::string GetOutlineColor() const final;
+	std::string GetOutlineColor() const override;
 	std::string ToString() const override;
 	void SetOutlineColor(std::string const& outlideColor);
 

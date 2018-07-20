@@ -48,3 +48,13 @@ CPoint CRectangle::GetRightBottom() const
 {
 	return m_rightBottom;
 }
+
+std::string CRectangle::ToString() const
+{
+	return CShape::ToString();
+};
+
+std::string CRectangle::GetOutlineColor() const
+{
+	return CShape::GetOutlineColor();
+};

@@ -12,6 +12,9 @@ public:
 	CPoint GetCenter() const;
 	double GetRadius() const;
 
+	std::string ToString() const override;
+	std::string GetOutlineColor() const override;
+
 private:
 	void AppendProperties(std::ostream& strm) const override;
 	CPoint m_center;

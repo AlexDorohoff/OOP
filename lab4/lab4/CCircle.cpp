@@ -44,3 +44,13 @@ void CCircle::AppendProperties(std::ostream& strm) const
 		 << "\nCenter: "
 		 << "x :" << std::to_string(GetCenter().x) << "y : " << std::to_string(GetCenter().y);
 }
+
+std::string CCircle::ToString() const
+{
+	return CShape::ToString();
+};
+
+std::string CCircle::GetOutlineColor() const
+{
+	return CShape::GetOutlineColor();
+};

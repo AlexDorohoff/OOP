@@ -12,6 +12,9 @@ public:
 	CPoint GetVertex2() const;
 	CPoint GetVertex3() const;
 
+	std::string ToString() const override;
+	std::string GetOutlineColor() const override;
+
 private:
 	void AppendProperties(std::ostream& strm) const override;
 	CPoint m_vertex1;

@@ -12,3 +12,13 @@ void CSolidShape::SetFillColor(std::string const& color)
 {
 	m_fillColor = color;
 }
+
+std::string CSolidShape::ToString() const
+{
+	return CShape::ToString();
+};
+
+std::string CSolidShape::GetOutlineColor() const
+{
+	return CShape::GetOutlineColor();
+};
