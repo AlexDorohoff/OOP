@@ -161,21 +161,35 @@ CTime const CTime::operator/(int const arg) const
 	}
 };
 
+int CTime::operator/(CTime const& time) const
+{
+	if (time.m_timestamp == 0)
+	{
+		throw std::invalid_argument("Invalid operation. Division by zero");
+	}
+
+	return (m_timestamp / time.m_timestamp);
+}
+
 CTime CTime::operator*=(int const& time)
 {
 	m_timestamp *= time;
 	return CTime(PreventOverFlowSecond(m_timestamp));
 }
 
-int CTime::operator/=(CTime const& time)
+CTime CTime::operator/=(int const& arg)
 {
-	m_timestamp /= time.m_timestamp;
-	return m_timestamp;
+	if (arg == 0)
+	{
+		throw std::invalid_argument("Invalid operation. Division by zero");
+	}
+
+	m_timestamp = m_timestamp / arg;
+	return *this;
 }
 
 bool CTime::operator==(CTime const& time) const
 {
-	std::cout << m_timestamp << " " << time.m_timestamp;
 	return (m_timestamp == time.m_timestamp);
 }
 
@@ -202,4 +216,16 @@ bool CTime::operator<=(CTime const& time) const
 bool CTime::operator>=(CTime const& time) const
 {
 	return (m_timestamp >= time.m_timestamp);
+}
+
+std::ostream& operator<<(std::ostream& os, const CTime& time)
+{
+	os << time.GetHours() << ':' << time.GetMinutes() << ':' << time.GetSeconds();
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, const CTime& time)
+{
+	is >> time;
+	return is;
 }

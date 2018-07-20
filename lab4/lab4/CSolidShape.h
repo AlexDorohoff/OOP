@@ -6,8 +6,7 @@ class CSolidShape : public ISolidShape
 	, public CShape
 {
 public:
-	std::string
-	GetFillColor() const override final;
+	std::string GetFillColor() const final;
 	void SetFillColor(std::string const& color);
 	virtual void AppendProperties(std::ostream& strm) const = 0;
 

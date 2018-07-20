@@ -117,7 +117,7 @@ public:
 	void Resize(const size_t& newSize)
 	{
 		size_t size = GetSize();
-		if (size() > newSize)
+		if (size > newSize)
 		{
 			m_end = m_end - (size - newSize);
 		}
@@ -127,6 +127,12 @@ public:
 		}
 	}
 	*/
+	void Clear() noexcept
+	{
+		DestroyItems(m_begin, m_end);
+		m_end = m_begin;
+	}
+
 	~CMyArray()
 	{
 		DeleteItems(m_begin, m_end);

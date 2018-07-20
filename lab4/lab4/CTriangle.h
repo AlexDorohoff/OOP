@@ -17,6 +17,4 @@ private:
 	CPoint m_vertex1;
 	CPoint m_vertex2;
 	CPoint m_vertex3;
-	std::string m_outlineColor;
-	std::string m_fillColor;
 };

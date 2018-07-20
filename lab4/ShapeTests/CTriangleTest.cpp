@@ -5,6 +5,7 @@ TEST_CASE("Can take a info")
 {
 	CTriangle triangle({ 1, 2 }, { 3, 4 }, { 4, 2 }, "#fff", "#000");
 	CHECK(triangle.ToString() == R"(Shape: triangle
+Fill color: #000
 Vertex1: 1.000000 2.000000
 Vertex2: 3.000000 4.000000
 Vertex3: 4.000000 2.000000
@@ -41,6 +42,7 @@ TEST_CASE("triangle has info")
 {
 	CTriangle triangle({ 1, 2 }, { 3, 4 }, { 4, 2 }, "#fff", "#000");
 	CHECK(triangle.ToString() == R"(Shape: triangle
+Fill color: #000
 Vertex1: 1.000000 2.000000
 Vertex2: 3.000000 4.000000
 Vertex3: 4.000000 2.000000

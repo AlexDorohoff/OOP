@@ -39,6 +39,7 @@ double CCircle::GetRadius() const
 void CCircle::AppendProperties(std::ostream& strm) const
 {
 	strm << "Shape: Circle"
+		 << "\nFill color: " << GetFillColor()
 		 << "\nRadius: " << std::to_string(GetRadius())
 		 << "\nCenter: "
 		 << "x :" << std::to_string(GetCenter().x) << "y : " << std::to_string(GetCenter().y);

@@ -44,6 +44,7 @@ double CTriangle::GetArea() const
 void CTriangle::AppendProperties(std::ostream& strm) const
 {
 	strm << ("Shape: triangle")
+		 << "\nFill color: " << GetFillColor()
 		 << "\nVertex1: " << std::to_string(m_vertex1.x) << " " << std::to_string(m_vertex1.y)
 		 << "\nVertex2: " << std::to_string(m_vertex2.x) << " " << std::to_string(m_vertex2.y)
 		 << "\nVertex3: " << std::to_string(m_vertex3.x) << " " + std::to_string(m_vertex3.y);

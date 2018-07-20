@@ -2,8 +2,8 @@
 #include <functional>
 #include <vector>
 
-template <typename T, typename Less>
-bool FindMaxEx(std::vector<T> const& arr, T& maxValue, Less const& less)
+template <typename T, typename Less = std::less<T>>
+bool FindMaxEx(std::vector<T> const& arr, T& maxValue, Less const& less = std::less<T>)
 {
 	if (arr.empty())
 	{

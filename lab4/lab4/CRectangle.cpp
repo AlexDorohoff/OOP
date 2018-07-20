@@ -33,6 +33,7 @@ double CRectangle::GetArea() const
 void CRectangle::AppendProperties(std::ostream& strm) const
 {
 	strm << "Shape: rectangle"
+		 << "\nFill color: " << GetFillColor()
 		 << "\nleft top: " << std::to_string(m_leftTop.x) << " " << std::to_string(m_leftTop.y)
 		 << "\nright bottom: " << std::to_string(m_rightBottom.x) << " " << std::to_string(m_rightBottom.y)
 		 << ("\nwidth: ") << std::to_string(GetWidth());

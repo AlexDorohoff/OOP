@@ -45,9 +45,10 @@ public:
 
 	CTime const operator*(int const arg) const;
 	CTime const operator/(int const arg) const;
+	int operator/(CTime const& time) const;
 
 	CTime operator*=(int const& time);
-	int operator/=(CTime const& time);
+	CTime operator/=(int const& time);
 
 	bool operator==(CTime const& time) const;
 	bool operator!=(CTime const& time) const;
@@ -57,6 +58,9 @@ public:
 
 	bool operator<=(CTime const& time) const;
 	bool operator>=(CTime const& time) const;
+
+	friend std::ostream& operator<<(std::ostream& os, const CTime& time);
+	friend std::istream& operator>>(std::istream& is, const CTime& time);
 
 private:
 	unsigned m_timestamp = 0;

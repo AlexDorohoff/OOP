@@ -33,6 +33,7 @@ TEST_CASE("Rectangle has text representation")
 {
 	CRectangle rectangle({ 1, 0 }, { 0, 1 }, "#090909", "#FF00FF");
 	CHECK(rectangle.ToString() == R"(Shape: rectangle
+Fill color: #FF00FF
 left top: 1.000000 0.000000
 right bottom: 0.000000 1.000000
 width: 1.000000
